@@ -39,3 +39,12 @@ hs_err_pid*
 /.idea/jarRepositories.xml
 /.idea/libraries/Maven__junit_junit_4_13_2.xml
 /.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
+/target/classes/.gitignore
+/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml
+/target/classes/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml
+/target/classes/pom.xml
+/target/classes/README.md
+/target/classes/target/classes/.gitignore
+/target/classes/target/classes/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml
+/target/classes/target/classes/pom.xml
+/target/classes/target/classes/README.md
