@@ -1,4 +1,4 @@
-package HAUtel.src;
+package src;
 
 public class App {
 
