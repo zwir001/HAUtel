@@ -1,9 +1,9 @@
-package src.databaseConnection;
+package src.infrastructure;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import src.databaseConnection.exceptions.PostgresDataModificationQueryException;
-import src.databaseConnection.exceptions.PostgresSelectQueryException;
+import src.infrastructure.exceptions.PostgresDataModificationQueryException;
+import src.infrastructure.exceptions.PostgresSelectQueryException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,9 +21,22 @@ public class QueryExecutor {
         }
     }
 
-    public void executeQuery(String query) {
+    public boolean executeQuery(String query) {
         try {
-            connectionManager.connect().createStatement().executeQuery(query);
+            var result = connectionManager.connect().createStatement().executeQuery(query);
+            if(result.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new PostgresDataModificationQueryException(e.getMessage(), query, connectionManager.getUser());
+        }
+
+        return false;
+    }
+
+    public void executeUpdate(String query) {
+        try {
+            connectionManager.connect().createStatement().executeUpdate(query);
         } catch (SQLException e) {
             throw new PostgresDataModificationQueryException(e.getMessage(), query, connectionManager.getUser());
         }

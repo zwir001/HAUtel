@@ -1,4 +1,4 @@
-package src.databaseConnection;
+package src.infrastructure;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

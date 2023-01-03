@@ -1,4 +1,4 @@
-package src.databaseConnection.exceptions;
+package src.infrastructure.exceptions;
 
 public class PostgresDataModificationQueryException extends PostgresQueryException {
     public PostgresDataModificationQueryException(String message, String query, String user) {

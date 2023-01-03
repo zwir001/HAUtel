@@ -1,4 +1,4 @@
-package src.databaseConnection.exceptions;
+package src.infrastructure.exceptions;
 
 import lombok.Getter;
 
