@@ -1,7 +1,7 @@
 package src.backend.systems.repositories;
 
 import src.backend.infrastructure.ConnectionManager;
-import src.model.client.Client;
+import src.model.Client;
 
 import java.sql.SQLException;
 import java.util.Optional;

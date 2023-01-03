@@ -1,4 +1,4 @@
-package src.model.client;
+package src.model;
 
 import lombok.Builder;
 import lombok.Value;

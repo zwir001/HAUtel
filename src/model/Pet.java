@@ -1,9 +1,11 @@
 package src.model;
 
+import lombok.Builder;
 import lombok.Value;
 
 @Value
-public class Animal {
+@Builder
+public class Pet {
     int id;
     String name;
     int ownerId;

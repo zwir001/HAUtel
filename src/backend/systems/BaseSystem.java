@@ -6,8 +6,10 @@ import src.backend.infrastructure.ConnectionManager;
 import src.backend.infrastructure.DatabaseUser;
 import src.backend.systems.repositories.ClientLoginRepository;
 import src.backend.systems.repositories.ClientLoginRepositoryInterface;
-import src.model.client.Client;
+import src.model.Client;
+import src.model.Pet;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Slf4j
@@ -16,6 +18,7 @@ public class BaseSystem {
 
     private final UserAuthSystem userAuthSystem;
     private ClientSystem clientSystem;
+    private PetSystem petSystem;
 
     private final ClientLoginRepositoryInterface clientLoginRepo;
 
@@ -62,8 +65,9 @@ public class BaseSystem {
         return false;
     }
 
-    public boolean addNewClient(String name, String secondName, String email, String phoneNumber, char[] password) {
-        if (clientSystem.addNewClient(name, secondName, email, phoneNumber)) {
+    public boolean addNewClient(String name, String secondName, String email, String phoneNumber, char[] password,
+                                String petName, int speciesId, String drugs, String allergy) {
+        if (!clientSystem.addNewClient(name, secondName, email, phoneNumber)) {
             log.error("New client not added! data: name - '{}', secondName - '{}', email - '{}', phoneNumber - '{}'",
                     name,
                     secondName,
@@ -74,8 +78,13 @@ public class BaseSystem {
         }
 
         var clientId = clientLoginRepo.getClientIdFromEmailAddress(email);
-        if (clientId.isPresent() && userAuthSystem.addNewClientPassword(clientId.get(), password)) {
+        if (clientId.isEmpty() || !userAuthSystem.addNewClientPassword(clientId.get(), password)) {
             log.error("Client with email - '{}' not found! Aborting to set password!", email);
+            return false;
+        }
+
+        if(!petSystem.addNewPet(clientId.get(), petName, speciesId, drugs, allergy)) {
+            log.error("Failed to add first pet to client: '{}'!", clientId.get());
             return false;
         }
 
@@ -90,7 +99,16 @@ public class BaseSystem {
         return clientSystem.getClient(id);
     }
 
+    public boolean addNewPet(String petName, int speciesId, String drugs, String allergy) {
+        return petSystem.addNewPet(userId, petName, speciesId, drugs, allergy);
+    }
+
+    public Collection<Pet> getClientPets(int clientId) {
+        return petSystem.getAllClientPets(clientId);
+    }
+
     private void initializeSystems() {
         clientSystem = new ClientSystem(connectionManager, userAuthSystem);
+        petSystem = new PetSystem(connectionManager);
     }
 }

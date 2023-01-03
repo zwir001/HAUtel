@@ -1,4 +1,4 @@
-package src.model.client;
+package src.model.exceptions;
 
 import lombok.Getter;
 
@@ -9,6 +9,6 @@ public class InvalidClientDataException extends Exception {
 
     public InvalidClientDataException(String fieldName) {
         this.fieldName = fieldName;
-        this.message = String.format("Invalid field value for field: '%d'", fieldName);
+        this.message = String.format("Invalid value for field: '%s'", fieldName);
     }
 }

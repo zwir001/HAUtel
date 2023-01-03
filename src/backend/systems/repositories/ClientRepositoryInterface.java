@@ -1,6 +1,6 @@
 package src.backend.systems.repositories;
 
-import src.model.client.Client;
+import src.model.Client;
 
 import java.util.Optional;
 

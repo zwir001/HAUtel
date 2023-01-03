@@ -5,9 +5,9 @@ import src.backend.authentification.UserAuthSystem;
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.systems.repositories.ClientRepository;
 import src.backend.systems.repositories.ClientRepositoryInterface;
-import src.model.client.Client;
-import src.model.client.ClientFactory;
-import src.model.client.InvalidClientDataException;
+import src.model.Client;
+import src.model.exceptions.InvalidClientDataException;
+import src.model.factories.ClientFactory;
 
 import java.util.Optional;
 
@@ -24,7 +24,8 @@ public class ClientSystem {
     }
 
     public boolean addNewClient(String name, String secondName, String email, String phoneNumber) {
-        if(clientRepo.clientEmailExists(email)) {
+        if (clientRepo.clientEmailExists(email)) {
+            log.error("Client with email - '{}' already exists!", email);
             return false;
         }
 
