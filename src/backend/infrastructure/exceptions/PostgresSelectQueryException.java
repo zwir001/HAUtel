@@ -1,4 +1,4 @@
-package src.infrastructure.exceptions;
+package src.backend.infrastructure.exceptions;
 
 public class PostgresSelectQueryException extends PostgresQueryException {
     public PostgresSelectQueryException(String message, String query, String user) {

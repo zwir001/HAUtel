@@ -1,4 +1,4 @@
-package src.infrastructure;
+package src.backend.infrastructure;
 
 import lombok.Getter;
 

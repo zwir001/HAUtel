@@ -1,7 +1,7 @@
-package src.repositories;
+package src.backend.systems.repositories;
 
-import src.infrastructure.ConnectionManager;
-import src.infrastructure.QueryExecutor;
+import src.backend.infrastructure.ConnectionManager;
+import src.backend.infrastructure.QueryExecutor;
 
 public class AbstractRepository {
     protected QueryExecutor executor;

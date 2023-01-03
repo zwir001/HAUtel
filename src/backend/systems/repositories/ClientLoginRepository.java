@@ -1,6 +1,6 @@
-package src.repositories;
+package src.backend.systems.repositories;
 
-import src.infrastructure.ConnectionManager;
+import src.backend.infrastructure.ConnectionManager;
 
 import java.sql.SQLException;
 import java.util.Optional;

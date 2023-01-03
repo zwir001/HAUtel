@@ -1,7 +1,7 @@
-package src.authentification.repository;
+package src.backend.authentification.repository;
 
-import src.infrastructure.ConnectionManager;
-import src.infrastructure.QueryExecutor;
+import src.backend.infrastructure.ConnectionManager;
+import src.backend.infrastructure.QueryExecutor;
 
 import java.sql.SQLException;
 import java.util.Optional;

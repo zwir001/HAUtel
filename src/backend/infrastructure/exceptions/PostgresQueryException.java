@@ -1,4 +1,4 @@
-package src.infrastructure.exceptions;
+package src.backend.infrastructure.exceptions;
 
 import lombok.Getter;
 

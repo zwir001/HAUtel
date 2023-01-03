@@ -1,9 +1,9 @@
-package src.infrastructure;
+package src.backend.infrastructure;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import src.infrastructure.exceptions.PostgresDataModificationQueryException;
-import src.infrastructure.exceptions.PostgresSelectQueryException;
+import src.backend.infrastructure.exceptions.PostgresDataModificationQueryException;
+import src.backend.infrastructure.exceptions.PostgresSelectQueryException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
