@@ -96,6 +96,9 @@ public class BaseSystem {
     }
 
     public Optional<Client> getClientData(int id) {
+        if(!isEmployee) {
+            return Optional.empty();
+        }
         return clientSystem.getClient(id);
     }
 
