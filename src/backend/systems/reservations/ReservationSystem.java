@@ -22,6 +22,7 @@ public class ReservationSystem {
         this.connectionManager = connectionManager;
         this.clientSystem = clientSystem;
         this.petSystem = petSystem;
+        this.reservationRepo = new ReservationRepository(connectionManager);
         this.orderedServiceRepo = new OrderedServiceRepository(connectionManager);
         this.reservationStatusRepo = new ReservationStatusRepository(connectionManager);
     }

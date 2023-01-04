@@ -138,6 +138,14 @@ public class BaseSystem {
         return reservationSystem.cancelReservation(reservationId);
     }
 
+    public void completeReservation(int reservationId) {
+        if(!isEmployee) {
+            return;
+        }
+
+        reservationSystem.completeReservation(reservationId);
+    }
+
     private void initializeSystems() {
         clientSystem = new ClientSystem(connectionManager);
         petSystem = new PetSystem(connectionManager);
