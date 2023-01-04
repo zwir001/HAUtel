@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.infrastructure.DatabaseUser;
 import src.backend.systems.authentification.UserAuthSystem;
+import src.backend.systems.clients.ClientSystem;
+import src.backend.systems.pets.PetSystem;
 import src.backend.systems.repositories.ClientLoginRepository;
 import src.backend.systems.repositories.ClientLoginRepositoryInterface;
 import src.model.Client;
@@ -123,7 +125,7 @@ public class BaseSystem {
     }
 
     private void initializeSystems() {
-        clientSystem = new ClientSystem(connectionManager, userAuthSystem);
+        clientSystem = new ClientSystem(connectionManager);
         petSystem = new PetSystem(connectionManager);
     }
 }

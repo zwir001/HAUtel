@@ -1,10 +1,9 @@
-package src.backend.systems;
+package src.backend.systems.clients;
 
 import lombok.extern.slf4j.Slf4j;
 import src.backend.infrastructure.ConnectionManager;
-import src.backend.systems.authentification.UserAuthSystem;
-import src.backend.systems.repositories.ClientRepository;
-import src.backend.systems.repositories.ClientRepositoryInterface;
+import src.backend.systems.clients.repositories.ClientRepository;
+import src.backend.systems.clients.repositories.ClientRepositoryInterface;
 import src.model.Client;
 import src.model.exceptions.InvalidClientDataException;
 import src.model.factories.ClientFactory;
@@ -14,12 +13,11 @@ import java.util.Optional;
 @Slf4j
 public class ClientSystem {
     private final ConnectionManager connectionManager;
-    private final ClientRepositoryInterface clientRepo;
-    private final UserAuthSystem userAuthSystem;
 
-    public ClientSystem(ConnectionManager connectionManager, UserAuthSystem userAuthSystem) {
+    private final ClientRepositoryInterface clientRepo;
+
+    public ClientSystem(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
-        this.userAuthSystem = userAuthSystem;
         this.clientRepo = new ClientRepository(connectionManager);
     }
 

@@ -1,6 +1,7 @@
-package src.backend.systems.repositories;
+package src.backend.systems.pets.repositories;
 
 import src.backend.infrastructure.ConnectionManager;
+import src.backend.systems.repositories.AbstractRepository;
 import src.model.Pet;
 
 import java.sql.SQLException;

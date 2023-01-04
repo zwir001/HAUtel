@@ -1,11 +1,11 @@
-package src.backend.systems;
+package src.backend.systems.pets;
 
 import lombok.extern.slf4j.Slf4j;
 import src.backend.infrastructure.ConnectionManager;
-import src.backend.systems.repositories.PetRepository;
-import src.backend.systems.repositories.PetRepositoryInterface;
-import src.backend.systems.repositories.PetSpeciesRepository;
-import src.backend.systems.repositories.PetSpeciesRepositoryInterface;
+import src.backend.systems.pets.repositories.PetRepository;
+import src.backend.systems.pets.repositories.PetRepositoryInterface;
+import src.backend.systems.pets.repositories.PetSpeciesRepository;
+import src.backend.systems.pets.repositories.PetSpeciesRepositoryInterface;
 import src.model.Pet;
 import src.model.exceptions.InvalidPetDataException;
 import src.model.factories.PetFactory;
@@ -15,6 +15,7 @@ import java.util.Collection;
 @Slf4j
 public class PetSystem {
     private final ConnectionManager connectionManager;
+
     private final PetRepositoryInterface petRepo;
     private final PetSpeciesRepositoryInterface speciesRepo;
 

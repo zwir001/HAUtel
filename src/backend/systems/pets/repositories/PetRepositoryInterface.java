@@ -1,4 +1,4 @@
-package src.backend.systems.repositories;
+package src.backend.systems.pets.repositories;
 
 import src.model.Pet;
 

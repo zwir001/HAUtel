@@ -1,4 +1,4 @@
-package src.backend.systems.repositories;
+package src.backend.systems.clients.repositories;
 
 import src.model.Client;
 
