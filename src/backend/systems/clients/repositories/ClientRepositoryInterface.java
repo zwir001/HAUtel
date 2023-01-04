@@ -14,4 +14,6 @@ public interface ClientRepositoryInterface {
     void changeEmail(int id, String email);
 
     void changePhoneNumber(int id, String phoneNumber);
+
+    void updateCharges(int id, float updatedCharges);
 }

@@ -8,6 +8,7 @@ import src.backend.systems.clients.ClientSystem;
 import src.backend.systems.pets.PetSystem;
 import src.backend.systems.repositories.ClientLoginRepository;
 import src.backend.systems.repositories.ClientLoginRepositoryInterface;
+import src.backend.systems.reservations.ReservationSystem;
 import src.model.Client;
 import src.model.Pet;
 
@@ -21,6 +22,7 @@ public class BaseSystem {
     private final UserAuthSystem userAuthSystem;
     private ClientSystem clientSystem;
     private PetSystem petSystem;
+    private ReservationSystem reservationSystem;
 
     private final ClientLoginRepositoryInterface clientLoginRepo;
 
@@ -124,8 +126,21 @@ public class BaseSystem {
         return petSystem.getAllClientPets(clientId);
     }
 
+    public boolean addNewReservation(int petId, String date, int duration) {
+        return reservationSystem.makeNewReservation(userId, petId, date, duration);
+    }
+
+    public boolean cancelReservation(int reservationId) {
+        if(!isEmployee) {
+            return false;
+        }
+
+        return reservationSystem.cancelReservation(reservationId);
+    }
+
     private void initializeSystems() {
         clientSystem = new ClientSystem(connectionManager);
         petSystem = new PetSystem(connectionManager);
+        reservationSystem = new ReservationSystem(connectionManager, clientSystem, petSystem);
     }
 }

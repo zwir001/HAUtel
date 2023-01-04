@@ -1,5 +1,13 @@
 package src.backend.systems.reservations.repositories;
 
-public interface ReservationRepositoryInterface {
+import src.model.Reservation;
 
+import java.util.Collection;
+
+public interface ReservationRepositoryInterface {
+    Collection<Reservation> getReservationsForPet(int petId);
+
+    boolean addNewReservation(Reservation reservation);
+
+    void changeReservationStatus(int reservationId, int statusId);
 }

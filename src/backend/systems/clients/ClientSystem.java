@@ -64,4 +64,8 @@ public class ClientSystem {
         clientRepo.changePhoneNumber(id, phoneNumber);
         return true;
     }
+
+    public void updateClientCharges(int id, float updatedCharges) {
+        clientRepo.updateCharges(id, updatedCharges);
+    }
 }

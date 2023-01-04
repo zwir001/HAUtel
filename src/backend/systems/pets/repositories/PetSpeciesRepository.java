@@ -35,6 +35,38 @@ public class PetSpeciesRepository extends AbstractRepository implements PetSpeci
     }
 
     @Override
+    public int getSpeciesCapacity(int id) {
+        var query = String.format("SELECT limitmiejsc FROM gatunek WHERE id = %d", id);
+        var result = executor.executeSelect(query);
+
+        try {
+            if(result.next()) {
+                return result.getInt("limitmiejsc");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int getSpeciesDailyCost(int id) {
+        var query = String.format("SELECT dziennykoszt FROM gatunek WHERE id = %d", id);
+        var result = executor.executeSelect(query);
+
+        try {
+            if(result.next()) {
+                return result.getInt("limitmiejsc");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0;
+    }
+
+    @Override
     public boolean speciesExists(int id) {
         var query = String.format("SELECT id FROM gatunek WHERE id = %d", id);
         var result = executor.executeSelect(query);

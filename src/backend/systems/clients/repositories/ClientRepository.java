@@ -71,4 +71,10 @@ public class ClientRepository extends AbstractRepository implements ClientReposi
         var query = String.format("UPDATE klient SET numertelefonu = '%s' WHERE id = %d", phoneNumber, id);
         executor.executeUpdate(query);
     }
+
+    @Override
+    public void updateCharges(int id, float updatedCharges) {
+        var query = String.format("UPDATE klient SET naleznosci = %f WHERE id = %d", updatedCharges, id);
+        executor.executeUpdate(query);
+    }
 }

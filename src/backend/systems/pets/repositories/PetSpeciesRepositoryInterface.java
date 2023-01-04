@@ -7,5 +7,9 @@ import java.util.Optional;
 public interface PetSpeciesRepositoryInterface {
     Optional<PetSpecies> getSpeciesInfo(int id);
 
+    int getSpeciesCapacity(int id);
+
+    int getSpeciesDailyCost(int id);
+
     boolean speciesExists(int id);
 }

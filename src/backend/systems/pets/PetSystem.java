@@ -11,6 +11,7 @@ import src.model.exceptions.InvalidPetDataException;
 import src.model.factories.PetFactory;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Slf4j
 public class PetSystem {
@@ -39,7 +40,23 @@ public class PetSystem {
         }
     }
 
+    public Optional<Pet> getPet(int petId) {
+        return petRepo.getPet(petId);
+    }
+
     public Collection<Pet> getAllClientPets(int clientId) {
         return petRepo.getClientPets(clientId);
+    }
+
+    public Collection<Integer> getAllClientPetIds(int clientId) {
+        return petRepo.getClientPetIds(clientId);
+    }
+
+    public int getSpeciesDailyCost(int speciesId) {
+        return speciesRepo.getSpeciesDailyCost(speciesId);
+    }
+
+    public int getSpeciesCapacity(int speciesId) {
+        return speciesRepo.getSpeciesCapacity(speciesId);
     }
 }

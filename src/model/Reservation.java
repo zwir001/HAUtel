@@ -1,14 +1,14 @@
 package src.model;
 
+import lombok.Builder;
 import lombok.Value;
 
-import java.time.Instant;
-
 @Value
+@Builder
 public class Reservation {
     int id;
     int animalId;
-    Instant startDate;
+    String startDate;
     int duration;
     float value;
     int statusId;
