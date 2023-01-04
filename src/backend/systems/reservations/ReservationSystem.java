@@ -3,12 +3,12 @@ package src.backend.systems.reservations;
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.systems.reservations.repositories.ReservationRepositoryInterface;
 
-public class ReservationsSystem {
+public class ReservationSystem {
     private final ConnectionManager connectionManager;
 
     private ReservationRepositoryInterface reservationRepo;
 
-    public ReservationsSystem(ConnectionManager connectionManager) {
+    public ReservationSystem(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
 }
