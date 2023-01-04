@@ -1,9 +1,9 @@
 package src.backend.systems;
 
 import lombok.extern.slf4j.Slf4j;
-import src.backend.authentification.UserAuthSystem;
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.infrastructure.DatabaseUser;
+import src.backend.systems.authentification.UserAuthSystem;
 import src.backend.systems.repositories.ClientLoginRepository;
 import src.backend.systems.repositories.ClientLoginRepositoryInterface;
 import src.model.Client;
@@ -97,6 +97,18 @@ public class BaseSystem {
 
     public Optional<Client> getClientData(int id) {
         return clientSystem.getClient(id);
+    }
+
+    public void changeClientPassword(char[] newPassword) {
+        userAuthSystem.updateClientPassword(userId, newPassword);
+    }
+
+    public boolean changeClientEmail(String newEmail) {
+        return clientSystem.changeClientEmail(userId, newEmail);
+    }
+
+    public boolean changeClientPhoneNumber(String newPhoneNumber) {
+        return clientSystem.changeClientPhoneNumber(userId, newPhoneNumber);
     }
 
     public boolean addNewPet(String petName, int speciesId, String drugs, String allergy) {

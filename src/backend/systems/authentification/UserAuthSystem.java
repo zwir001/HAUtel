@@ -1,10 +1,10 @@
-package src.backend.authentification;
+package src.backend.systems.authentification;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import src.backend.authentification.repository.UserAuthRepository;
-import src.backend.authentification.repository.UserAuthRepositoryInterface;
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.infrastructure.DatabaseUser;
+import src.backend.systems.authentification.repository.UserAuthRepository;
+import src.backend.systems.authentification.repository.UserAuthRepositoryInterface;
 
 public class UserAuthSystem {
     private static final String ENCRYPTION_SEED = "112358";

@@ -10,4 +10,8 @@ public interface ClientRepositoryInterface {
     boolean clientEmailExists(String email);
 
     boolean addNewClient(Client client);
+
+    void changeEmail(int id, String email);
+
+    void changePhoneNumber(int id, String phoneNumber);
 }

@@ -17,7 +17,7 @@ public class ClientFactory {
 
         builder.name(Optional.ofNullable(name).orElseThrow(() -> new InvalidClientDataException("name")));
         builder.secondName(Optional.ofNullable(secondName).orElseThrow(() -> new InvalidClientDataException("secondName")));
-        builder.email(Optional.ofNullable(email).orElseThrow(() -> new InvalidClientDataException("email")));
+        builder.email(Optional.ofNullable(email).filter(e -> e.contains("@")).orElseThrow(() -> new InvalidClientDataException("email")));
         builder.phoneNumber(Optional.ofNullable(phoneNumber).orElseThrow(() -> new InvalidClientDataException("phoneNumber")));
 
         return builder.build();
