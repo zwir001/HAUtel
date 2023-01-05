@@ -8,6 +8,7 @@ import src.backend.systems.clients.ClientSystem;
 import src.backend.systems.pets.PetSystem;
 import src.backend.systems.repositories.ClientLoginRepository;
 import src.backend.systems.repositories.ClientLoginRepositoryInterface;
+import src.backend.systems.reservations.RequestedServiceStatus;
 import src.backend.systems.reservations.ReservationSystem;
 import src.model.Client;
 import src.model.Pet;
@@ -150,6 +151,10 @@ public class BaseSystem {
         }
 
         reservationSystem.completeReservation(reservationId);
+    }
+
+    public Map<Integer, RequestedServiceStatus> orderAdditionalServices(int reservationId, Collection<Integer> requestedServicesIds) {
+        return reservationSystem.addAdditionalServices(reservationId, requestedServicesIds);
     }
 
     private void initializeSystems() {

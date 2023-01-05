@@ -49,7 +49,7 @@ public class ClientRepository extends AbstractRepository implements ClientReposi
 
     @Override
     public boolean addNewClient(Client client) {
-        var query = String.format("INSERT INTO Klient (imie, nazwisko, email, numertelefonu)" +
+        var query = String.format("INSERT INTO Klient (imie, nazwisko, email, numertelefonu) " +
                         "VALUES ('%s', '%s', '%s', '%s')",
                 client.getName(),
                 client.getSecondName(),

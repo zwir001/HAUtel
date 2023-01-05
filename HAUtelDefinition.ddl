@@ -119,7 +119,7 @@ GRANT CONNECT ON DATABASE "HAUtel" TO PUBLIC;
 create role client
     login;
 grant insert, select, update on public.klient to client;
-grant insert, select on public.rezerwacja to client;
+grant insert, select, update on public.rezerwacja to client;
 grant insert, select, update on public.zwierze to client;
 grant select on public.dodatkowausluga to client;
 grant select on public.wplata to client;
@@ -130,7 +130,7 @@ grant insert, select, update on public.haslo to client;
 
 create role employee
     login;
-grant select on public.klient to employee;
+grant select, update on public.klient to employee;
 grant select, update on public.rezerwacja to employee;
 grant select on public.zwierze to employee;
 grant select, update on public.dodatkowausluga to employee;

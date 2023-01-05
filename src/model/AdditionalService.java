@@ -1,11 +1,13 @@
 package src.model;
 
+import lombok.Builder;
 import lombok.Value;
 
 @Value
+@Builder
 public class AdditionalService {
     int id;
     String name;
-    float dailyCost;
+    float cost;
     int dailyCapacity;
 }

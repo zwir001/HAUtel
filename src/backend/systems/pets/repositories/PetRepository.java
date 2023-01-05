@@ -98,7 +98,7 @@ public class PetRepository extends AbstractRepository implements PetRepositoryIn
 
     @Override
     public boolean addNewPet(int clientId, Pet pet) {
-        var query = String.format("INSERT INTO Zwierze (imie, klientid, gatunekid, leki, alergie)" +
+        var query = String.format("INSERT INTO Zwierze (imie, klientid, gatunekid, leki, alergie) " +
                         "VALUES ('%s', %d, %d, '%s', '%s')",
                 pet.getName(),
                 clientId,

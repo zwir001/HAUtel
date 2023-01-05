@@ -8,6 +8,7 @@ import src.model.ReservationClientView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public class ReservationRepository extends AbstractRepository implements ReservationRepositoryInterface {
     public ReservationRepository(ConnectionManager connectionManager) {
@@ -30,7 +31,7 @@ public class ReservationRepository extends AbstractRepository implements Reserva
                         .animalId(result.getInt("zwierzeid"))
                         .startDate(result.getString("termin"))
                         .duration(result.getInt("czaspobytu"))
-                        .status("nazwa")
+                        .status(result.getString("nazwa"))
                         .build()
                 );
             }
@@ -39,6 +40,27 @@ public class ReservationRepository extends AbstractRepository implements Reserva
         }
 
         return reservations;
+    }
+
+    public Optional<Reservation> getReservation(int reservationId) {
+        var query = String.format("SELECT * FROM rezerwacja WHERE id = %d", reservationId);
+        var result = executor.executeSelect(query);
+
+        try {
+            if (result.next()) {
+                return Optional.of(Reservation.builder()
+                        .id(result.getInt("id"))
+                        .animalId(result.getInt("zwierzeid"))
+                        .startDate(result.getString("termin"))
+                        .duration(result.getInt("czaspobytu"))
+                        .statusId(result.getInt("statusid"))
+                        .build());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Optional.empty();
     }
 
     @Override
@@ -63,7 +85,7 @@ public class ReservationRepository extends AbstractRepository implements Reserva
     }
 
     @Override
-    public int getCountPetsOfSpeciesFromDate(String date, int speciesId) {
+    public int countPetsOfSpeciesOnDate(String date, int speciesId) {
         var query = String.format("SELECT count(*) AS no " +
                 "FROM rezerwacja " +
                 "JOIN zwierze z " +
@@ -85,4 +107,27 @@ public class ReservationRepository extends AbstractRepository implements Reserva
 
         return 0;
     }
+
+    @Override
+    public float countAllActiveReservationsCostForClient(int clientId) {
+        var query = String.format("SELECT sum(kosztpobytu) " +
+                "FROM rezerwacja " +
+                "JOIN zwierze z on z.id = rezerwacja.zwierzeid " +
+                "WHERE klientid = %d " +
+                "AND statusrezerwacjiid = 1", clientId);
+
+        var result = executor.executeSelect(query);
+
+        try {
+            if (result.next()) {
+                return result.getFloat("sum");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0f;
+    }
+
+
 }

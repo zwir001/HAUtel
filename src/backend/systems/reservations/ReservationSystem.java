@@ -11,10 +11,7 @@ import src.model.ReservationClientView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class ReservationSystem {
@@ -25,7 +22,9 @@ public class ReservationSystem {
 
     private final ReservationRepositoryInterface reservationRepo;
     private final OrderedServiceRepositoryInterface orderedServiceRepo;
+    private final AdditionalServiceRepositoryInterface additionalServiceRepo;
     private final ReservationStatusRepositoryInterface reservationStatusRepo;
+
 
     public ReservationSystem(ConnectionManager connectionManager, ClientSystem clientSystem, PetSystem petSystem) {
         this.connectionManager = connectionManager;
@@ -33,6 +32,7 @@ public class ReservationSystem {
         this.petSystem = petSystem;
         this.reservationRepo = new ReservationRepository(connectionManager);
         this.orderedServiceRepo = new OrderedServiceRepository(connectionManager);
+        this.additionalServiceRepo = new AdditionalServiceRepository(connectionManager);
         this.reservationStatusRepo = new ReservationStatusRepository(connectionManager);
     }
 
@@ -58,14 +58,19 @@ public class ReservationSystem {
         var dailyCost = petSystem.getSpeciesDailyCost(pet.getSpeciesId());
         var reservationValue = dailyCost * duration;
 
-        return reservationRepo.addNewReservation(Reservation.builder()
+        if (reservationRepo.addNewReservation(Reservation.builder()
                 .animalId(petId)
                 .startDate(date)
                 .duration(duration)
                 .value(reservationValue)
                 .statusId(reservationStatusRepo.getStatusId(ReservationStatus.ACTIVE.getName()))
-                .build()
-        );
+                .build())
+        ) {
+            updateClientCharges(clientId);
+            return true;
+        }
+
+        return false;
     }
 
     public boolean cancelReservation(int reservationId) {
@@ -93,6 +98,54 @@ public class ReservationSystem {
         return reservations;
     }
 
+    public Map<Integer, RequestedServiceStatus> addAdditionalServices(int reservationId, Collection<Integer> requestedServicesIds) {
+        var reservationOpt = reservationRepo.getReservation(reservationId);
+        if(reservationOpt.isEmpty()) {
+            log.error("Reservation with id - '{}' not found!", reservationId);
+            return Collections.emptyMap();
+        }
+        var reservation = reservationOpt.get();
+
+        if(reservation.getStatusId() != 1) {
+            log.error("Aborting, can't order new services for not active reservation with id - '{}'!", reservationId);
+            return Collections.emptyMap();
+        }
+        var alreadyOrderedServices = orderedServiceRepo.getOrderedServices(reservationId);
+
+        var results = new HashMap<Integer, RequestedServiceStatus>();
+        var newServicesTotalCost = 0f;
+        for(var serviceId : requestedServicesIds) {
+            if(alreadyOrderedServices.contains(serviceId)) {
+                results.put(serviceId, RequestedServiceStatus.ALREADY_ORDERED);
+                continue;
+            }
+
+            var additionalService = additionalServiceRepo.getAdditionalService(serviceId);
+            if(additionalService.isEmpty()) {
+                log.warn("Requested service with id - '{}' is not present!", serviceId);
+                results.put(serviceId, RequestedServiceStatus.UNKNOWN_ID);
+                continue;
+            }
+
+            if(!isAdditionalServiceAvailableForReservation(
+                    serviceId, additionalService.get().getDailyCapacity(),
+                    reservation.getStartDate(), reservation.getDuration())
+            ) {
+                results.put(serviceId, RequestedServiceStatus.NOT_AVAILABLE);
+                continue;
+            }
+
+            if(orderedServiceRepo.addOrderedService(reservationId, serviceId)) {
+                results.put(serviceId, RequestedServiceStatus.ADDED);
+                newServicesTotalCost += additionalService.get().getCost();
+            }
+        }
+
+        updateReservationValue(reservationId, newServicesTotalCost);
+
+        return results;
+    }
+
     private boolean validateReservationDates(int petSpeciesId, String date, int duration) {
         var dailyCapacity = petSystem.getSpeciesCapacity(petSpeciesId);
 
@@ -106,7 +159,7 @@ public class ReservationSystem {
 
         for (var i = 0; i <= duration; i++) {
             var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(i);
-            if (reservationRepo.getCountPetsOfSpeciesFromDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
+            if (reservationRepo.countPetsOfSpeciesOnDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
                 return false;
             }
         }
@@ -115,9 +168,18 @@ public class ReservationSystem {
     }
 
     private void updateClientCharges(int clientId) {
-        // TODO updating client charges
-        var charges = 0;
+        clientSystem.updateClientCharges(clientId, reservationRepo.countAllActiveReservationsCostForClient(clientId));
+    }
 
-        clientSystem.updateClientCharges(clientId, charges);
+    private boolean isAdditionalServiceAvailableForReservation(
+            int serviceId, int dailyCapacity,
+            String reservationDate, int reservationDuration
+    ) {
+        //TODO dates validations to add
+        return false;
+    }
+
+    private void updateReservationValue(int reservationId, float additionalCosts) {
+        //TODO reservation cost increase
     }
 }
