@@ -10,4 +10,6 @@ public interface ReservationRepositoryInterface {
     boolean addNewReservation(Reservation reservation);
 
     void changeReservationStatus(int reservationId, int statusId);
+
+    int getCountPetsOfSpeciesFromDate(String date, int speciesId);
 }

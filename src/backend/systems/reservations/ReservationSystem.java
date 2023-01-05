@@ -7,6 +7,11 @@ import src.backend.systems.pets.PetSystem;
 import src.backend.systems.reservations.repositories.*;
 import src.model.Reservation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Slf4j
 public class ReservationSystem {
     private final ConnectionManager connectionManager;
@@ -14,7 +19,7 @@ public class ReservationSystem {
     private final ClientSystem clientSystem;
     private final PetSystem petSystem;
 
-    private ReservationRepositoryInterface reservationRepo;
+    private final ReservationRepositoryInterface reservationRepo;
     private final OrderedServiceRepositoryInterface orderedServiceRepo;
     private final ReservationStatusRepositoryInterface reservationStatusRepo;
 
@@ -76,7 +81,20 @@ public class ReservationSystem {
     private boolean validateReservationDates(int petSpeciesId, String date, int duration) {
         var dailyCapacity = petSystem.getSpeciesCapacity(petSpeciesId);
 
-        // TODO dates validation
+        Date reservationDate;
+        try {
+            reservationDate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+        } catch (ParseException e) {
+            log.error("Invalid date format - '{}', format should be 'dd-MM-yyyy'", date);
+            return false;
+        }
+
+        for (var i = 0; i < duration; i++) {
+            var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(1);
+            if (reservationRepo.getCountPetsOfSpeciesFromDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
+                return false;
+            }
+        }
 
         return true;
     }
