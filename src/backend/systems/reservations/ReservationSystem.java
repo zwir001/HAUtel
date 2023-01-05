@@ -89,8 +89,8 @@ public class ReservationSystem {
             return false;
         }
 
-        for (var i = 0; i < duration; i++) {
-            var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(1);
+        for (var i = 0; i <= duration; i++) {
+            var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(i);
             if (reservationRepo.getCountPetsOfSpeciesFromDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
                 return false;
             }
