@@ -6,11 +6,15 @@ import src.backend.systems.clients.ClientSystem;
 import src.backend.systems.pets.PetSystem;
 import src.backend.systems.reservations.repositories.*;
 import src.model.Reservation;
+import src.model.ReservationClientView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class ReservationSystem {
@@ -76,6 +80,17 @@ public class ReservationSystem {
         var completedStatusId = reservationStatusRepo.getStatusId(ReservationStatus.COMPLETED.getName());
 
         reservationRepo.changeReservationStatus(reservationId, completedStatusId);
+    }
+
+    public Map<Integer, Collection<ReservationClientView>> getClientReservations(int clientId) {
+        var clientPetIds = petSystem.getAllClientPetIds(clientId);
+
+        var reservations = new HashMap<Integer, Collection<ReservationClientView>>();
+        for (var petId : clientPetIds) {
+            reservations.put(clientId, reservationRepo.getReservationsForPet(petId));
+        }
+
+        return reservations;
     }
 
     private boolean validateReservationDates(int petSpeciesId, String date, int duration) {

@@ -1,11 +1,12 @@
 package src.backend.systems.reservations.repositories;
 
 import src.model.Reservation;
+import src.model.ReservationClientView;
 
 import java.util.Collection;
 
 public interface ReservationRepositoryInterface {
-    Collection<Reservation> getReservationsForPet(int petId);
+    Collection<ReservationClientView> getReservationsForPet(int petId);
 
     boolean addNewReservation(Reservation reservation);
 

@@ -11,8 +11,10 @@ import src.backend.systems.repositories.ClientLoginRepositoryInterface;
 import src.backend.systems.reservations.ReservationSystem;
 import src.model.Client;
 import src.model.Pet;
+import src.model.ReservationClientView;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -128,6 +130,10 @@ public class BaseSystem {
 
     public boolean addNewReservation(int petId, String date, int duration) {
         return reservationSystem.makeNewReservation(userId, petId, date, duration);
+    }
+
+    public Map<Integer, Collection<ReservationClientView>> getClientReservations(int clientId) {
+        return reservationSystem.getClientReservations(clientId);
     }
 
     public boolean cancelReservation(int reservationId) {
