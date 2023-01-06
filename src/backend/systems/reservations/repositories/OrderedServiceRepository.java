@@ -45,4 +45,30 @@ public class OrderedServiceRepository extends AbstractRepository implements Orde
         var query = String.format("DELETE FROM zamowionausluga WHERE rezerwacjaid = %d", reservationId);
         return executor.executeQuery(query);
     }
+
+    @Override
+    public int countOrderedServicesOfTypeForInterval(int serviceId, String date, int duration) {
+        var query = String.format("SELECT count(*) AS no " +
+                "FROM zamowionausluga z " +
+                "JOIN rezerwacja r on r.id = z.rezerwacjaid " +
+                "WHERE (r.termin between '%s' and DATE('%s') + interval '%d' day " +
+                "OR r.termin + r.czaspobytu between '%s' and DATE('%s') + interval '%d' day) " +
+                "AND r.statusrezerwacjiid = 1 " +
+                "AND z.dodatkowauslugaid = %d",
+                date, date, duration,
+                date, date, duration,
+                serviceId);
+
+        var result = executor.executeSelect(query);
+
+        try {
+            if (result.next()) {
+                return result.getInt("no");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0;
+    }
 }

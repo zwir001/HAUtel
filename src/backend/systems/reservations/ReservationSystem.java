@@ -74,7 +74,7 @@ public class ReservationSystem {
     }
 
     public boolean cancelReservation(int reservationId) {
-        if(!reservationRepo.reservationExists(reservationId)) {
+        if (!reservationRepo.reservationExists(reservationId)) {
             log.warn("Reservation - '{}' doesn't exist. Aborting!", reservationId);
             return false;
         }
@@ -88,7 +88,7 @@ public class ReservationSystem {
     }
 
     public boolean completeReservation(int reservationId) {
-        if(!reservationRepo.reservationExists(reservationId)) {
+        if (!reservationRepo.reservationExists(reservationId)) {
             log.warn("Reservation - '{}' doesn't exist. Aborting!", reservationId);
             return false;
         }
@@ -196,8 +196,7 @@ public class ReservationSystem {
             int serviceId, int dailyCapacity,
             String reservationDate, int reservationDuration
     ) {
-        //TODO dates validations to add
-        return false;
+        return orderedServiceRepo.countOrderedServicesOfTypeForInterval(serviceId, reservationDate, reservationDuration) < dailyCapacity * reservationDuration;
     }
 
     private void updateReservationValue(int reservationId, float additionalCosts) {

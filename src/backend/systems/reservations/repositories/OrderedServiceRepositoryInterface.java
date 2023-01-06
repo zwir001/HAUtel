@@ -6,4 +6,6 @@ public interface OrderedServiceRepositoryInterface {
     Collection<Integer> getOrderedServices(int reservationId);
     boolean addOrderedService(int reservationId, int serviceId);
     boolean deleteOrderedServicesForReservation(int reservationId);
+
+    int countOrderedServicesOfTypeForInterval(int serviceId, String date, int duration);
 }
