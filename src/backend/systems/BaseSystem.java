@@ -145,16 +145,16 @@ public class BaseSystem {
         return reservationSystem.cancelReservation(reservationId);
     }
 
-    public void completeReservation(int reservationId) {
+    public boolean completeReservation(int reservationId) {
         if(!isEmployee) {
-            return;
+            return false;
         }
 
-        reservationSystem.completeReservation(reservationId);
+        return reservationSystem.completeReservation(reservationId);
     }
 
     public Map<Integer, RequestedServiceStatus> orderAdditionalServices(int reservationId, Collection<Integer> requestedServicesIds) {
-        return reservationSystem.addAdditionalServices(reservationId, requestedServicesIds);
+        return reservationSystem.addAdditionalServices(userId, reservationId, requestedServicesIds);
     }
 
     private void initializeSystems() {

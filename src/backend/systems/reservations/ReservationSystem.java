@@ -74,17 +74,31 @@ public class ReservationSystem {
     }
 
     public boolean cancelReservation(int reservationId) {
+        if(!reservationRepo.reservationExists(reservationId)) {
+            log.warn("Reservation - '{}' doesn't exist. Aborting!", reservationId);
+            return false;
+        }
         var cancelledStatusId = reservationStatusRepo.getStatusId(ReservationStatus.CANCELLED.getName());
-
         reservationRepo.changeReservationStatus(reservationId, cancelledStatusId);
+
+        var clientId = reservationRepo.getClientIdFromReservation(reservationId);
+        updateClientCharges(clientId);
 
         return orderedServiceRepo.deleteOrderedServicesForReservation(reservationId);
     }
 
-    public void completeReservation(int reservationId) {
+    public boolean completeReservation(int reservationId) {
+        if(!reservationRepo.reservationExists(reservationId)) {
+            log.warn("Reservation - '{}' doesn't exist. Aborting!", reservationId);
+            return false;
+        }
         var completedStatusId = reservationStatusRepo.getStatusId(ReservationStatus.COMPLETED.getName());
-
         reservationRepo.changeReservationStatus(reservationId, completedStatusId);
+
+        var clientId = reservationRepo.getClientIdFromReservation(reservationId);
+        updateClientCharges(clientId);
+
+        return true;
     }
 
     public Map<Integer, Collection<ReservationClientView>> getClientReservations(int clientId) {
@@ -98,15 +112,21 @@ public class ReservationSystem {
         return reservations;
     }
 
-    public Map<Integer, RequestedServiceStatus> addAdditionalServices(int reservationId, Collection<Integer> requestedServicesIds) {
+    public Map<Integer, RequestedServiceStatus> addAdditionalServices(
+            int clientId, int reservationId, Collection<Integer> requestedServicesIds) {
+        if (clientId != reservationRepo.getClientIdFromReservation(reservationId)) {
+            log.error("Reservation - '{}', not registered for client - '{}'!", reservationId, clientId);
+        }
+
         var reservationOpt = reservationRepo.getReservation(reservationId);
-        if(reservationOpt.isEmpty()) {
+        if (reservationOpt.isEmpty()) {
             log.error("Reservation with id - '{}' not found!", reservationId);
             return Collections.emptyMap();
         }
+
         var reservation = reservationOpt.get();
 
-        if(reservation.getStatusId() != 1) {
+        if (reservation.getStatusId() != 1) {
             log.error("Aborting, can't order new services for not active reservation with id - '{}'!", reservationId);
             return Collections.emptyMap();
         }
@@ -114,20 +134,20 @@ public class ReservationSystem {
 
         var results = new HashMap<Integer, RequestedServiceStatus>();
         var newServicesTotalCost = 0f;
-        for(var serviceId : requestedServicesIds) {
-            if(alreadyOrderedServices.contains(serviceId)) {
+        for (var serviceId : requestedServicesIds) {
+            if (alreadyOrderedServices.contains(serviceId)) {
                 results.put(serviceId, RequestedServiceStatus.ALREADY_ORDERED);
                 continue;
             }
 
             var additionalService = additionalServiceRepo.getAdditionalService(serviceId);
-            if(additionalService.isEmpty()) {
+            if (additionalService.isEmpty()) {
                 log.warn("Requested service with id - '{}' is not present!", serviceId);
                 results.put(serviceId, RequestedServiceStatus.UNKNOWN_ID);
                 continue;
             }
 
-            if(!isAdditionalServiceAvailableForReservation(
+            if (!isAdditionalServiceAvailableForReservation(
                     serviceId, additionalService.get().getDailyCapacity(),
                     reservation.getStartDate(), reservation.getDuration())
             ) {
@@ -135,13 +155,14 @@ public class ReservationSystem {
                 continue;
             }
 
-            if(orderedServiceRepo.addOrderedService(reservationId, serviceId)) {
+            if (orderedServiceRepo.addOrderedService(reservationId, serviceId)) {
                 results.put(serviceId, RequestedServiceStatus.ADDED);
                 newServicesTotalCost += additionalService.get().getCost();
             }
         }
 
         updateReservationValue(reservationId, newServicesTotalCost);
+        updateClientCharges(clientId);
 
         return results;
     }
@@ -180,6 +201,6 @@ public class ReservationSystem {
     }
 
     private void updateReservationValue(int reservationId, float additionalCosts) {
-        //TODO reservation cost increase
+        reservationRepo.increaseReservationValue(reservationId, additionalCosts);
     }
 }

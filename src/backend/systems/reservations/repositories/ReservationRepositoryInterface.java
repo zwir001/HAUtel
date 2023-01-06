@@ -11,6 +11,8 @@ public interface ReservationRepositoryInterface {
 
     Optional<Reservation> getReservation(int reservationId);
 
+    boolean reservationExists(int reservationId);
+
     boolean addNewReservation(Reservation reservation);
 
     void changeReservationStatus(int reservationId, int statusId);
@@ -18,4 +20,8 @@ public interface ReservationRepositoryInterface {
     int countPetsOfSpeciesOnDate(String date, int speciesId);
 
     float countAllActiveReservationsCostForClient(int clientId);
+
+    int getClientIdFromReservation(int reservationId);
+
+    void increaseReservationValue(int reservationId, float additionalCosts);
 }

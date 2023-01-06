@@ -64,6 +64,18 @@ public class ReservationRepository extends AbstractRepository implements Reserva
     }
 
     @Override
+    public boolean reservationExists(int reservationId) {
+        var query = String.format("SELECT id FROM rezerwacja WHERE email = %d", reservationId);
+        var result = executor.executeSelect(query);
+
+        try {
+            return result.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean addNewReservation(Reservation reservation) {
         var query = String.format("INSERT INTO rezerwacja (zwierzeID, termin, czasPobytu, kosztPobytu, statusRezerwacjiID) " +
                         "VALUES (%d, '%s', %d, %f, %d)",
@@ -129,5 +141,31 @@ public class ReservationRepository extends AbstractRepository implements Reserva
         return 0f;
     }
 
+    @Override
+    public int getClientIdFromReservation(int reservationId) {
+        var query = String.format("SELECT z.klientid " +
+                "FROM rezerwacja " +
+                "JOIN zwierze z on rezerwacja.zwierzeid = z.id " +
+                "where rezerwacja.id = %d", reservationId);
 
+        var result = executor.executeSelect(query);
+
+        try {
+            if (result.next()) {
+                return result.getInt("klientid");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0;
+    }
+
+    @Override
+    public void increaseReservationValue(int reservationId, float additionalCosts) {
+        var query = String.format("UPDATE rezerwacja " +
+                "SET kosztpobytu = kosztpobytu + %f " +
+                "WHERE id = %d", additionalCosts, reservationId);
+        executor.executeUpdate(query);
+    }
 }
