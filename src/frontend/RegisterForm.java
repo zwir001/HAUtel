@@ -42,6 +42,7 @@ public class RegisterForm extends JDialog{
     private String petDrugs;
     private String petAllergy;
     private int species;
+    private boolean isValidData = false;
 
 
     public RegisterForm(JFrame parent) {
@@ -74,7 +75,16 @@ public class RegisterForm extends JDialog{
         species = speciesComboBox.getSelectedIndex() + 1;
         petDrugs = drugsTf.getText();
         petAllergy = allergyTf.getText();
-        baseSystem.addNewClient(name, surname, email, phoneNumber, password, petName, species, petDrugs, petAllergy);
+        isValidData = baseSystem.addNewClient(name, surname, email, phoneNumber, password, petName, species, petDrugs, petAllergy);
+        if(!isValidData){
+            JOptionPane.showMessageDialog(this,
+                    "Invalid data",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+
 
 
 
