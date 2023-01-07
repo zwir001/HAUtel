@@ -31,7 +31,6 @@ public class RegisterForm extends JDialog{
     private JButton registerButton;
     private JButton returnButton;
     private JComboBox speciesComboBox;
-    BaseSystem baseSystem = new BaseSystem();
 
     private String name;
     private String surname;
@@ -45,7 +44,7 @@ public class RegisterForm extends JDialog{
     private boolean isValidData = false;
 
 
-    public RegisterForm(JFrame parent) {
+    public RegisterForm(JFrame parent, BaseSystem baseSystem) {
         super(parent);
         setTitle("Create a new account");
         setContentPane(mainPanel);
@@ -58,7 +57,7 @@ public class RegisterForm extends JDialog{
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registerUser();
+                registerUser(baseSystem);
 
             }
         });
@@ -72,7 +71,7 @@ public class RegisterForm extends JDialog{
         });
     }
 
-    private void registerUser(){
+    private void registerUser(BaseSystem baseSystem){
         name = nameTf.getText();
         surname = surnameTf.getText();
         email = emailTf.getText();

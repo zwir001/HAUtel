@@ -17,11 +17,11 @@ public class LoginForm extends JDialog{
     private JButton createAnAccountButton;
     private JButton signInAsEmployeeButton;
     private JLabel enterEmailLabel;
-    private JLabel enterPassfordLabel;
+    private JLabel enterPasswordLabel;
     private boolean isCorrect = false;
     BaseSystem baseSystem = new BaseSystem();
-    RegisterForm registerForm = new RegisterForm(null);
-    AccountForm accountForm = new AccountForm(null);
+    RegisterForm registerForm = new RegisterForm(null, baseSystem);
+    AccountForm accountForm = new AccountForm(null, baseSystem);
 
 
 
