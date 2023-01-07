@@ -2,6 +2,7 @@ package src.backend.systems.clients;
 
 import lombok.extern.slf4j.Slf4j;
 import src.backend.infrastructure.ConnectionManager;
+import src.backend.infrastructure.DatabaseUser;
 import src.backend.systems.clients.repositories.ClientRepository;
 import src.backend.systems.clients.repositories.ClientRepositoryInterface;
 import src.model.Client;
@@ -15,6 +16,11 @@ public class ClientSystem {
     private final ConnectionManager connectionManager;
 
     private final ClientRepositoryInterface clientRepo;
+
+    public ClientSystem() {
+        this.connectionManager = DatabaseUser.CLIENT.getConnectionManager();
+        this.clientRepo = new ClientRepository(this.connectionManager);
+    }
 
     public ClientSystem(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;

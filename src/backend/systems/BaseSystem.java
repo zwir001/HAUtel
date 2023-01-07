@@ -74,7 +74,7 @@ public class BaseSystem {
 
     public boolean addNewClient(String name, String secondName, String email, String phoneNumber, char[] password,
                                 String petName, int speciesId, String drugs, String allergy) {
-        if (!clientSystem.addNewClient(name, secondName, email, phoneNumber)) {
+        if (!new ClientSystem().addNewClient(name, secondName, email, phoneNumber)) {
             log.error("New client not added! data: name - '{}', secondName - '{}', email - '{}', phoneNumber - '{}'",
                     name,
                     secondName,
