@@ -62,7 +62,14 @@ public class RegisterForm extends JDialog{
 
             }
         });
-        setVisible(true);
+        setVisible(false);
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+
+            }
+        });
     }
 
     private void registerUser(){

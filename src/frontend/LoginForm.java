@@ -20,6 +20,8 @@ public class LoginForm extends JDialog{
     private JLabel enterPassfordLabel;
     private boolean isCorrect = false;
     BaseSystem baseSystem = new BaseSystem();
+    RegisterForm registerForm = new RegisterForm(null);
+    AccountForm accountForm = new AccountForm(null);
 
 
 
@@ -40,9 +42,32 @@ public class LoginForm extends JDialog{
                 String email = enterEmailTextField.getText();
                 char [] password = passwordField.getPassword();
                 isCorrect = baseSystem.login(email, password, false);
+                if(!isCorrect){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Invalid data",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else {
+                    dispose();
+                    setVisible(false);
+                    accountForm.setVisible(true);
+                    accountForm.requestFocus();
+                }
 
 
 
+            }
+        });
+
+        createAnAccountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                setVisible(false);
+                registerForm.setVisible(true);
+                registerForm.requestFocus();
             }
         });
         setVisible(true);
