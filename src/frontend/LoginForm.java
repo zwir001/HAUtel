@@ -20,8 +20,10 @@ public class LoginForm extends JDialog{
     private JLabel enterPasswordLabel;
     private boolean isCorrect = false;
     BaseSystem baseSystem = new BaseSystem();
-    RegisterForm registerForm = new RegisterForm(null, baseSystem);
     AccountForm accountForm = new AccountForm(null, baseSystem);
+    RegisterForm registerForm = new RegisterForm(null, baseSystem);
+    LoginEmployeeForm loginEmployeeForm = new LoginEmployeeForm(null, baseSystem);
+
 
 
 
@@ -68,6 +70,17 @@ public class LoginForm extends JDialog{
                 setVisible(false);
                 registerForm.setVisible(true);
                 registerForm.requestFocus();
+            }
+        });
+
+        signInAsEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                setVisible(false);
+                loginEmployeeForm.setVisible(true);
+                loginEmployeeForm.requestFocus();
+
             }
         });
         setVisible(true);

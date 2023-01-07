@@ -44,6 +44,8 @@ public class RegisterForm extends JDialog{
     private boolean isValidData = false;
 
 
+
+
     public RegisterForm(JFrame parent, BaseSystem baseSystem) {
         super(parent);
         setTitle("Create a new account");
@@ -59,14 +61,16 @@ public class RegisterForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 registerUser(baseSystem);
 
+
             }
         });
         setVisible(false);
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                LoginForm loginForm = new LoginForm(null);
                 dispose();
-
             }
         });
     }
@@ -89,10 +93,18 @@ public class RegisterForm extends JDialog{
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-
-
-
-
+        else{
+            JOptionPane.showMessageDialog(this,
+                    "You have successfully created an account",
+                    "You created an account",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
     }
+
+    public boolean getIsValidData(){
+        return isValidData;
+    }
+
+
 }

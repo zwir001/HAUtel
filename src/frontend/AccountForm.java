@@ -1,11 +1,17 @@
 package src.frontend;
 
 import src.backend.systems.BaseSystem;
+import src.model.Client;
+import src.model.Pet;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
 
 public class AccountForm extends JDialog {
     private JPanel mainPanel;
@@ -34,6 +40,12 @@ public class AccountForm extends JDialog {
     private JComboBox speciesComboBox;
     private JLabel drugsLabel;
     private JLabel allergyLabel;
+    private JList petsList;
+    private JPanel dataPanel;
+    private JLabel userNameLabel;
+    private JLabel userSurnameLabel;
+    private JLabel userEmailLabel;
+    private JLabel userPhoneNumLabel;
 
     private char[] newPassword;
     private String newEmail;
@@ -47,6 +59,12 @@ public class AccountForm extends JDialog {
     private int newPetSpecies;
     private boolean isValidNewPetData = false;
 
+    private String name;
+    private String surname;
+    private String email;
+    private String phoneNumber;
+
+
     public AccountForm(JFrame parent, BaseSystem baseSystem) {
         super(parent);
         setTitle("Your account");
@@ -56,8 +74,17 @@ public class AccountForm extends JDialog {
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
+        changeData(baseSystem);
+        addNewPet(baseSystem);
+        showData(baseSystem);
 
 
+
+
+    }
+
+
+    private void changeData(BaseSystem baseSystem){
         passwordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,6 +145,9 @@ public class AccountForm extends JDialog {
 
             }
         });
+
+    }
+    private void addNewPet(BaseSystem baseSystem){
         addPetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,5 +176,31 @@ public class AccountForm extends JDialog {
 
 
         });
+
     }
+    private void showData(BaseSystem baseSystem){
+
+        /*Optional<Client> client;
+        client = baseSystem.getClientData();
+        Client curClient = client.get();
+
+        userNameLabel.setText("Name: " + curClient.getName());
+        userSurnameLabel.setText("Surname: " + curClient.getSecondName());
+        userEmailLabel.setText("Email address: " + curClient.getName());
+        userPhoneNumLabel.setText("Phone number: " + curClient.getPhoneNumber());*/
+
+        /*ArrayList<Pet> pets = new ArrayList<>();
+        DefaultListModel listModel = new DefaultListModel();
+        for(Pet pet : pets){
+            listModel.addElement(pet);
+        }
+        petsList.setModel(listModel);*/
+
+
+
+
+    }
+
+
+
 }
