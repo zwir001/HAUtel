@@ -11,7 +11,7 @@ public class UserAuthSystem {
     private final StandardPBEStringEncryptor encryptor;
 
     private final ConnectionManager employeeAuthManager = DatabaseUser.EMPLOYEE.getConnectionManager();
-    private final ConnectionManager clientAuthManager = DatabaseUser.EMPLOYEE.getConnectionManager();
+    private final ConnectionManager clientAuthManager = DatabaseUser.CLIENT.getConnectionManager();
 
     private final UserAuthRepositoryInterface authRepo;
 
