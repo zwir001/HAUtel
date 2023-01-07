@@ -23,8 +23,7 @@ public class QueryExecutor {
 
     public boolean executeQuery(String query) {
         try {
-            var result = connectionManager.connect().createStatement().executeQuery(query);
-            if(result.next()) {
+            if(connectionManager.connect().createStatement().executeUpdate(query) != -1) {
                 return true;
             }
         } catch (SQLException e) {

@@ -90,7 +90,7 @@ public class BaseSystem {
             return false;
         }
 
-        if(!petSystem.addNewPet(clientId.get(), petName, speciesId, drugs, allergy)) {
+        if(!new PetSystem().addNewPet(clientId.get(), petName, speciesId, drugs, allergy)) {
             log.error("Failed to add first pet to client: '{}'!", clientId.get());
             return false;
         }

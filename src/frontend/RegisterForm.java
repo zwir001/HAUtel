@@ -71,7 +71,7 @@ public class RegisterForm extends JDialog{
         phoneNumber = phoneNumTf.getText();
         password = passwordField.getPassword();
         petName = petNameTf.getText();
-        species = speciesComboBox.getSelectedIndex();
+        species = speciesComboBox.getSelectedIndex() + 1;
         petDrugs = drugsTf.getText();
         petAllergy = allergyTf.getText();
         baseSystem.addNewClient(name, surname, email, phoneNumber, password, petName, species, petDrugs, petAllergy);
