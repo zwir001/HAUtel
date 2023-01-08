@@ -11,6 +11,7 @@ import src.model.ReservationClientView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Slf4j
@@ -106,7 +107,7 @@ public class ReservationSystem {
 
         var reservations = new HashMap<Integer, Collection<ReservationClientView>>();
         for (var petId : clientPetIds) {
-            reservations.put(clientId, reservationRepo.getReservationsForPet(petId));
+            reservations.put(petId, reservationRepo.getReservationsForPet(petId));
         }
 
         return reservations;
@@ -116,6 +117,7 @@ public class ReservationSystem {
             int clientId, int reservationId, Collection<Integer> requestedServicesIds) {
         if (clientId != reservationRepo.getClientIdFromReservation(reservationId)) {
             log.error("Reservation - '{}', not registered for client - '{}'!", reservationId, clientId);
+            return Collections.emptyMap();
         }
 
         var reservationOpt = reservationRepo.getReservation(reservationId);
@@ -179,7 +181,7 @@ public class ReservationSystem {
         }
 
         for (var i = 0; i <= duration; i++) {
-            var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(i);
+            var currentDay = LocalDateTime.ofInstant(reservationDate.toInstant(), ZoneId.of( "UTC" )).plusDays(i);
             if (reservationRepo.countPetsOfSpeciesOnDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
                 return false;
             }

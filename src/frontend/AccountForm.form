@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="src.frontend.AccountForm">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="8" left="30" bottom="20" right="30"/>
+    <constraints>
+      <xy x="20" y="20" width="698" height="581"/>
+    </constraints>
+    <properties>
+      <background color="-16"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="d9adc" binding="dataPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="cec96" binding="dataPanel" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Your data"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4a12f" class="javax.swing.JLabel" binding="userNameLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <foreground color="-16777216"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="f670b" class="javax.swing.JLabel" binding="userSurnameLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <foreground color="-16777216"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e3390" class="javax.swing.JLabel" binding="userEmailLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <foreground color="-16777216"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="4000c" class="javax.swing.JLabel" binding="userPhoneNumLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <foreground color="-16777216"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="658d9" class="javax.swing.JList" binding="petsList">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="232ff" class="javax.swing.JLabel" binding="petsLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="1"/>
+                  <text value="Your pets data:"/>
+                </properties>
+              </component>
+              <component id="f109c" class="javax.swing.JLabel" binding="userDataLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="1"/>
+                  <text value="Your personal data:"/>
+                </properties>
+              </component>
+              <component id="80c41" class="javax.swing.JLabel" binding="chargesLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="912f1" binding="reservationHistoryPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Check reservation history"/>
+            </constraints>
+            <properties>
+              <font name="Dialog" size="12" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="6f227" class="javax.swing.JLabel" binding="reservationsLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Your reservations data:"/>
+                </properties>
+              </component>
+              <component id="ab67e" class="javax.swing.JList" binding="reservationsList">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="97826" binding="changeDataPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Change your data"/>
+            </constraints>
+            <properties>
+              <font name="Dialog" size="12" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="9f8f5" class="javax.swing.JLabel" binding="passwordLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Change password"/>
+                </properties>
+              </component>
+              <component id="64ad1" class="javax.swing.JPasswordField" binding="passwordField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="10"/>
+                  <margin top="2" left="5" bottom="2" right="5"/>
+                </properties>
+              </component>
+              <component id="b47ea" class="javax.swing.JLabel" binding="emailLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Change email"/>
+                </properties>
+              </component>
+              <component id="e2d30" class="javax.swing.JTextField" binding="emailField">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="320d2" class="javax.swing.JLabel" binding="phoneNumLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Change phone number"/>
+                </properties>
+              </component>
+              <component id="77463" class="javax.swing.JTextField" binding="phoneNumberField">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="82512" class="javax.swing.JButton" binding="passwordButton">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm"/>
+                </properties>
+              </component>
+              <component id="30524" class="javax.swing.JButton" binding="emailButton">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm"/>
+                </properties>
+              </component>
+              <component id="b9e29" class="javax.swing.JButton" binding="phoneNumButton">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="37a2f" binding="reservationPanel" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="12" vgap="-1">
+            <margin top="10" left="45" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Make reservation"/>
+            </constraints>
+            <properties>
+              <font name="Dialog" size="12" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="a4497" class="javax.swing.JLabel" binding="petIDLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter the ID of the pet you want to make a reservation for"/>
+                </properties>
+              </component>
+              <component id="d50e3" class="javax.swing.JTextField" binding="dayField">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <component id="7556a" class="javax.swing.JTextField" binding="monthField">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <component id="18ee" class="javax.swing.JTextField" binding="yearField">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <component id="b2dea" class="javax.swing.JLabel" binding="dateLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter reservation date:"/>
+                </properties>
+              </component>
+              <component id="2813b" class="javax.swing.JTextField" binding="petIDField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <component id="3d246" class="javax.swing.JLabel" binding="durationLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter the duration of your reservation"/>
+                </properties>
+              </component>
+              <component id="88f00" class="javax.swing.JTextField" binding="durationField">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <component id="616d4" class="javax.swing.JLabel" binding="dayLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Day"/>
+                </properties>
+              </component>
+              <component id="2fbe7" class="javax.swing.JLabel" binding="monthLabel">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Month"/>
+                </properties>
+              </component>
+              <component id="5267f" class="javax.swing.JLabel" binding="yearLabel">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Year"/>
+                </properties>
+              </component>
+              <component id="23dbb" class="javax.swing.JButton" binding="confirmButton">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm reservation"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="fd268" binding="servicesPanel" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Add services"/>
+            </constraints>
+            <properties>
+              <font name="Dialog" size="12" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="cf949" class="javax.swing.JLabel" binding="reservationIDLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter ID reservation"/>
+                </properties>
+              </component>
+              <component id="212d1" class="javax.swing.JTextField" binding="reservationIDField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <hspacer id="38c8f">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="ac782" class="javax.swing.JLabel" binding="servicesLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="Choose additional services to your reservation"/>
+                </properties>
+              </component>
+              <component id="34298" class="javax.swing.JLabel" binding="priceLabel">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Price"/>
+                </properties>
+              </component>
+              <hspacer id="62619">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="779d">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="1c686" class="javax.swing.JLabel" binding="groomerPrice">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="35.00"/>
+                </properties>
+              </component>
+              <component id="a428" class="javax.swing.JLabel" binding="massageLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="30.00"/>
+                </properties>
+              </component>
+              <component id="1a6db" class="javax.swing.JLabel" binding="trainerLabel">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="40.00"/>
+                </properties>
+              </component>
+              <component id="9bb3c" class="javax.swing.JCheckBox" binding="groomerBox">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Groomer"/>
+                </properties>
+              </component>
+              <component id="fe752" class="javax.swing.JCheckBox" binding="massageBox">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Massage"/>
+                </properties>
+              </component>
+              <component id="80539" class="javax.swing.JCheckBox" binding="trainerBox">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Trainer"/>
+                </properties>
+              </component>
+              <component id="e7f1a" class="javax.swing.JCheckBox" binding="bathBox">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Bath"/>
+                </properties>
+              </component>
+              <component id="242a6" class="javax.swing.JLabel" binding="bathLabel">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="45.00"/>
+                </properties>
+              </component>
+              <component id="66a6a" class="javax.swing.JButton" binding="confirmServicesButton">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="c5f94" binding="petPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
+            <constraints>
+              <tabbedpane title="Add pet"/>
+            </constraints>
+            <properties>
+              <font name="Dialog" size="12" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="70b2e" class="javax.swing.JLabel" binding="petNameLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter pet's name"/>
+                </properties>
+              </component>
+              <component id="afdec" class="javax.swing.JTextField" binding="petNameField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="bc886" class="javax.swing.JLabel" binding="speciesLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Choose species"/>
+                </properties>
+              </component>
+              <component id="3c76b" class="javax.swing.JLabel" binding="drugsLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter pet's drugs"/>
+                </properties>
+              </component>
+              <component id="fc9e5" class="javax.swing.JTextField" binding="drugsField">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="6c7da" class="javax.swing.JLabel" binding="allergyLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter pet's allergies"/>
+                </properties>
+              </component>
+              <component id="3172d" class="javax.swing.JTextField" binding="allergyField">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="6b2a8" class="javax.swing.JButton" binding="addPetButton">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Add pet"/>
+                </properties>
+              </component>
+              <component id="c6394" class="javax.swing.JComboBox" binding="speciesComboBox">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <model>
+                    <item value="Dog"/>
+                    <item value="Cat"/>
+                    <item value="Rabbit"/>
+                    <item value="Hamster"/>
+                    <item value="Parrot"/>
+                    <item value="Guinea pig"/>
+                  </model>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+      <component id="3cc10" class="javax.swing.JLabel" binding="hotelLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Bauhaus 93" size="22" style="1"/>
+          <foreground color="-16777216"/>
+          <text value="HAUtel"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

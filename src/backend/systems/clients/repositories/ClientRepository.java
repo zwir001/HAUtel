@@ -23,6 +23,7 @@ public class ClientRepository extends AbstractRepository implements ClientReposi
                         .id(result.getInt("id"))
                         .name(result.getString("imie"))
                         .secondName(result.getString("nazwisko"))
+                        .email(result.getString("email"))
                         .phoneNumber(result.getString("numertelefonu"))
                         .charges(result.getFloat("naleznosci"))
                         .build()
@@ -74,7 +75,7 @@ public class ClientRepository extends AbstractRepository implements ClientReposi
 
     @Override
     public void updateCharges(int id, float updatedCharges) {
-        var query = String.format("UPDATE klient SET naleznosci = %f WHERE id = %d", updatedCharges, id);
+        var query = String.format("UPDATE klient SET naleznosci = %s WHERE id = %d", Float.valueOf(updatedCharges).toString(), id);
         executor.executeUpdate(query);
     }
 }

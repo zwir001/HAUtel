@@ -2,6 +2,7 @@ package src.backend.systems.pets;
 
 import lombok.extern.slf4j.Slf4j;
 import src.backend.infrastructure.ConnectionManager;
+import src.backend.infrastructure.DatabaseUser;
 import src.backend.systems.pets.repositories.PetRepository;
 import src.backend.systems.pets.repositories.PetRepositoryInterface;
 import src.backend.systems.pets.repositories.PetSpeciesRepository;
@@ -20,6 +21,12 @@ public class PetSystem {
     private final PetRepositoryInterface petRepo;
     private final PetSpeciesRepositoryInterface speciesRepo;
 
+    public PetSystem() {
+        this.connectionManager = DatabaseUser.CLIENT.getConnectionManager();
+        this.petRepo = new PetRepository(this.connectionManager);
+        this.speciesRepo = new PetSpeciesRepository(this.connectionManager);
+    }
+
     public PetSystem(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
         this.petRepo = new PetRepository(connectionManager);
@@ -27,7 +34,7 @@ public class PetSystem {
     }
 
     public boolean addNewPet(int clientId, String name, int speciesId, String drugs, String allergy) {
-        if (speciesRepo.speciesExists(speciesId)) {
+        if (!speciesRepo.speciesExists(speciesId)) {
             log.error("Species - '{}' of new animal is not available", speciesId);
             return false;
         }
@@ -52,7 +59,7 @@ public class PetSystem {
         return petRepo.getClientPetIds(clientId);
     }
 
-    public int getSpeciesDailyCost(int speciesId) {
+    public float getSpeciesDailyCost(int speciesId) {
         return speciesRepo.getSpeciesDailyCost(speciesId);
     }
 
