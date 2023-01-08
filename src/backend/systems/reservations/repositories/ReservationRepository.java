@@ -54,7 +54,7 @@ public class ReservationRepository extends AbstractRepository implements Reserva
                         .animalId(result.getInt("zwierzeid"))
                         .startDate(result.getString("termin"))
                         .duration(result.getInt("czaspobytu"))
-                        .statusId(result.getInt("statusid"))
+                        .statusId(result.getInt("statusrezerwacjiid"))
                         .build());
             }
         } catch (SQLException e) {

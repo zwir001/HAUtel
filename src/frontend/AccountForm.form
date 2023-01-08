@@ -353,8 +353,8 @@
               </component>
             </children>
           </grid>
-          <grid id="fd268" binding="servicesPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="fd268" binding="servicesPanel" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="30" bottom="10" right="30"/>
             <constraints>
               <tabbedpane title="Add services"/>
             </constraints>
@@ -362,7 +362,143 @@
               <font name="Dialog" size="12" style="0"/>
             </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="cf949" class="javax.swing.JLabel" binding="reservationIDLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Enter ID reservation"/>
+                </properties>
+              </component>
+              <component id="212d1" class="javax.swing.JTextField" binding="reservationIDField">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                </properties>
+              </component>
+              <hspacer id="38c8f">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="ac782" class="javax.swing.JLabel" binding="servicesLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="Choose additional services to your reservation"/>
+                </properties>
+              </component>
+              <component id="34298" class="javax.swing.JLabel" binding="priceLabel">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Price"/>
+                </properties>
+              </component>
+              <hspacer id="62619">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="779d">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="1c686" class="javax.swing.JLabel" binding="groomerPrice">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="35.00"/>
+                </properties>
+              </component>
+              <component id="a428" class="javax.swing.JLabel" binding="massageLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="30.00"/>
+                </properties>
+              </component>
+              <component id="1a6db" class="javax.swing.JLabel" binding="trainerLabel">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="40.00"/>
+                </properties>
+              </component>
+              <component id="9bb3c" class="javax.swing.JCheckBox" binding="groomerBox">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Groomer"/>
+                </properties>
+              </component>
+              <component id="fe752" class="javax.swing.JCheckBox" binding="massageBox">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Massage"/>
+                </properties>
+              </component>
+              <component id="80539" class="javax.swing.JCheckBox" binding="trainerBox">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Trainer"/>
+                </properties>
+              </component>
+              <component id="e7f1a" class="javax.swing.JCheckBox" binding="bathBox">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Bath"/>
+                </properties>
+              </component>
+              <component id="242a6" class="javax.swing.JLabel" binding="bathLabel">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="45.00"/>
+                </properties>
+              </component>
+              <component id="66a6a" class="javax.swing.JButton" binding="confirmServicesButton">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Dialog" size="12" style="0"/>
+                  <text value="Confirm"/>
+                </properties>
+              </component>
+            </children>
           </grid>
           <grid id="c5f94" binding="petPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="10" left="30" bottom="10" right="30"/>

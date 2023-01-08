@@ -1,6 +1,7 @@
 package src.frontend;
 
 import src.backend.systems.BaseSystem;
+import src.backend.systems.reservations.RequestedServiceStatus;
 import src.model.Client;
 import src.model.Pet;
 import src.model.ReservationClientView;
@@ -11,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class AccountForm extends JDialog {
@@ -63,6 +66,19 @@ public class AccountForm extends JDialog {
     private JLabel chargesLabel;
     private JLabel reservationsLabel;
     private JList reservationsList;
+    private JTextField reservationIDField;
+    private JCheckBox groomerBox;
+    private JCheckBox massageBox;
+    private JCheckBox trainerBox;
+    private JCheckBox bathBox;
+    private JButton confirmServicesButton;
+    private JLabel reservationIDLabel;
+    private JLabel servicesLabel;
+    private JLabel priceLabel;
+    private JLabel groomerPrice;
+    private JLabel massageLabel;
+    private JLabel trainerLabel;
+    private JLabel bathLabel;
     private JButton confirmReservationButton;
 
     private char[] newPassword;
@@ -84,6 +100,8 @@ public class AccountForm extends JDialog {
     private int durationReservation;
     private boolean isCorrectReservation = false;
 
+    private int reservationID;
+
 
     public AccountForm(JFrame parent, BaseSystem baseSystem) {
         super(parent);
@@ -98,6 +116,7 @@ public class AccountForm extends JDialog {
         addNewPet(baseSystem);
         showData(baseSystem);
         makeReservation(baseSystem);
+        addServices(baseSystem);
 
 
 
@@ -215,7 +234,7 @@ public class AccountForm extends JDialog {
         pets = (ArrayList<Pet>) baseSystem.getClientPets(curClient.getId());
         DefaultListModel listModel = new DefaultListModel();
         for(Pet pet : pets){
-            listModel.addElement("Pet's ID: " + pet.getId() + ", pet's Name: " + pet.getName() + ", owner's ID: " + pet.getOwnerId()
+            listModel.addElement("Pet ID: " + pet.getId() + ", pet's Name: " + pet.getName() + ", owner's ID: " + pet.getOwnerId()
                     + ", species: " + getSpecies(pet) + getDrugs(pet) + getAllergies(pet));
         }
         petsList.setModel(listModel);
@@ -223,15 +242,16 @@ public class AccountForm extends JDialog {
         //show reservations
 
         var reservations = new ArrayList<ReservationClientView>();
-<<<<<<< HEAD
+
         baseSystem.getClientReservations(curClient.getId()).values().forEach(reservations::addAll);
 
-=======
-        baseSystem.getClientReservations().values().forEach(reservations::addAll);
->>>>>>> 68697f2927d8221b6b15fc4c0ad17163f0b6b0d6
+
+        //baseSystem.getClientReservations().values().forEach(reservations::addAll);
+
         DefaultListModel model = new DefaultListModel();
         for(ReservationClientView reservation : reservations){
-            model.addElement(reservation);
+            model.addElement("Reservation ID: " + reservation.getId() + ", date: " + reservation.getStartDate()
+                    + ", duration " + reservation.getDuration() + ", value: " + reservation.getValue() + ", status: " + reservation.getStatus());
 
         }
         reservationsList.setModel(model);
@@ -337,6 +357,66 @@ public class AccountForm extends JDialog {
             }
         });
 
+    }
+
+    private void addServices(BaseSystem baseSystem){
+        confirmServicesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Map<Integer, RequestedServiceStatus> errorsServices = new HashMap<Integer, RequestedServiceStatus>();
+                reservationID = Integer.parseInt(reservationIDField.getText());
+                ArrayList<Integer> serviceIDs = new ArrayList<>();
+                if(groomerBox.isSelected()){
+                    serviceIDs.add(1);
+                }
+                if(massageBox.isSelected()){
+                    serviceIDs.add(2);
+                }
+                if(trainerBox.isSelected()){
+                    serviceIDs.add(3);
+                }
+                if(bathBox.isSelected()){
+                    serviceIDs.add(4);
+                }
+                errorsServices = baseSystem.orderAdditionalServices(reservationID, serviceIDs);
+                errorsServices.forEach((k, v) -> {
+                    if(v == RequestedServiceStatus.ALREADY_ORDERED){
+                        JOptionPane.showMessageDialog(mainPanel,
+                                "Services are already ordered",
+                                "Try again",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if(v == RequestedServiceStatus.ADDED){
+                        JOptionPane.showMessageDialog(mainPanel,
+                                "Services has been added.",
+                                "Services added",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    if(v == RequestedServiceStatus.NOT_AVAILABLE){
+                        JOptionPane.showMessageDialog(mainPanel,
+                                "Services are not available",
+                                "Try again",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if(v == RequestedServiceStatus.UNKNOWN_ID){
+                        JOptionPane.showMessageDialog(mainPanel,
+                                "One of the services has an unknown id",
+                                "Try again",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                });
+
+
+
+
+
+            }
+        });
     }
 
 
