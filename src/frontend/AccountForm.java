@@ -3,7 +3,6 @@ package src.frontend;
 import src.backend.systems.BaseSystem;
 import src.model.Client;
 import src.model.Pet;
-import src.model.Reservation;
 import src.model.ReservationClientView;
 
 import javax.swing.*;
@@ -11,7 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class AccountForm extends JDialog {
     private JPanel mainPanel;
@@ -223,7 +223,7 @@ public class AccountForm extends JDialog {
         //show reservations
         
         var reservations = new ArrayList<ReservationClientView>();
-        baseSystem.getClientReservations(curClient.getId()).values().forEach(reservations::addAll);
+        baseSystem.getClientReservations().values().forEach(reservations::addAll);
         DefaultListModel model = new DefaultListModel();
         for(ReservationClientView reservation : reservations){
             model.addElement(reservation);

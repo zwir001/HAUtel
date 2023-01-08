@@ -107,7 +107,7 @@ public class ReservationSystem {
 
         var reservations = new HashMap<Integer, Collection<ReservationClientView>>();
         for (var petId : clientPetIds) {
-            reservations.put(clientId, reservationRepo.getReservationsForPet(petId));
+            reservations.put(petId, reservationRepo.getReservationsForPet(petId));
         }
 
         return reservations;
