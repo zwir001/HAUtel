@@ -78,11 +78,11 @@ public class ReservationRepository extends AbstractRepository implements Reserva
     @Override
     public boolean addNewReservation(Reservation reservation) {
         var query = String.format("INSERT INTO rezerwacja (zwierzeID, termin, czasPobytu, kosztPobytu, statusRezerwacjiID) " +
-                        "VALUES (%d, '%s', %d, %f, %d)",
+                        "VALUES (%d, '%s', %d, %s, %d)",
                 reservation.getAnimalId(),
                 reservation.getStartDate(),
                 reservation.getDuration(),
-                reservation.getValue(),
+                Float.valueOf(reservation.getValue()).toString(),
                 reservation.getStatusId()
         );
 
@@ -164,8 +164,8 @@ public class ReservationRepository extends AbstractRepository implements Reserva
     @Override
     public void increaseReservationValue(int reservationId, float additionalCosts) {
         var query = String.format("UPDATE rezerwacja " +
-                "SET kosztpobytu = kosztpobytu + %f " +
-                "WHERE id = %d", additionalCosts, reservationId);
+                "SET kosztpobytu = kosztpobytu + %s " +
+                "WHERE id = %d", Float.valueOf(additionalCosts).toString(), reservationId);
         executor.executeUpdate(query);
     }
 }
