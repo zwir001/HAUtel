@@ -59,7 +59,7 @@ public class PetSystem {
         return petRepo.getClientPetIds(clientId);
     }
 
-    public int getSpeciesDailyCost(int speciesId) {
+    public float getSpeciesDailyCost(int speciesId) {
         return speciesRepo.getSpeciesDailyCost(speciesId);
     }
 

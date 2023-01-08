@@ -23,6 +23,7 @@ public class ClientRepository extends AbstractRepository implements ClientReposi
                         .id(result.getInt("id"))
                         .name(result.getString("imie"))
                         .secondName(result.getString("nazwisko"))
+                        .email(result.getString("email"))
                         .phoneNumber(result.getString("numertelefonu"))
                         .charges(result.getFloat("naleznosci"))
                         .build()

@@ -51,19 +51,19 @@ public class PetSpeciesRepository extends AbstractRepository implements PetSpeci
     }
 
     @Override
-    public int getSpeciesDailyCost(int id) {
+    public float getSpeciesDailyCost(int id) {
         var query = String.format("SELECT dziennykoszt FROM gatunek WHERE id = %d", id);
         var result = executor.executeSelect(query);
 
         try {
             if(result.next()) {
-                return result.getInt("limitmiejsc");
+                return result.getFloat("dziennykoszt");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return 0;
+        return 0f;
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface PetSpeciesRepositoryInterface {
 
     int getSpeciesCapacity(int id);
 
-    int getSpeciesDailyCost(int id);
+    float getSpeciesDailyCost(int id);
 
     boolean speciesExists(int id);
 }
