@@ -17,7 +17,7 @@ public class ReservationRepository extends AbstractRepository implements Reserva
 
     @Override
     public Collection<ReservationClientView> getReservationsForPet(int petId) {
-        var query = String.format("SELECT r.id, r.zwierzeid, r.termin, r.czaspobytu, s.nazwa " +
+        var query = String.format("SELECT r.id, r.zwierzeid, r.termin, r.czaspobytu, r.kosztpobytu, s.nazwa " +
                 "FROM rezerwacja r " +
                 "JOIN statusrezerwacji s ON r.statusrezerwacjiid = s.id " +
                 "WHERE zwierzeid = %d", petId);
@@ -31,6 +31,7 @@ public class ReservationRepository extends AbstractRepository implements Reserva
                         .animalId(result.getInt("zwierzeid"))
                         .startDate(result.getString("termin"))
                         .duration(result.getInt("czaspobytu"))
+                        .value(result.getFloat("kosztpobytu"))
                         .status(result.getString("nazwa"))
                         .build()
                 );
