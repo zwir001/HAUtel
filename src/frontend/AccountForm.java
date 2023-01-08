@@ -270,6 +270,7 @@ public class AccountForm extends JDialog {
                 yearReservation = Integer.parseInt((yearField.getText()));
                 YearMonth yearMonthObject = YearMonth.of(yearReservation, monthReservation);
                 int daysInMonth = yearMonthObject.lengthOfMonth();
+                durationReservation = Integer.parseInt(durationField.getText());
                 if(dayReservation < 1 || dayReservation > daysInMonth){
                     JOptionPane.showMessageDialog(mainPanel,
                             "Reservation day is invalid",
@@ -311,32 +312,6 @@ public class AccountForm extends JDialog {
 
             }
         });
-        /*confirmReservationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                petIDReservation = Integer.parseInt(petIDField.getText());
-                dateReseravtion = dayField.getText();
-                durationReservation = Integer.parseInt(durationField.getText());
-                isCorrectReservation = baseSystem.addNewReservation(petIDReservation, dateReseravtion, durationReservation);
-                if(!isCorrectReservation){
-                    JOptionPane.showMessageDialog(mainPanel,
-                            "Reservation data is invalid",
-                            "Try again",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                else {
-                    JOptionPane.showMessageDialog(mainPanel,
-                            "Reservation has been added.",
-                            "Reservation added",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    return;
-
-                }
-
-
-            }
-        });*/
 
     }
 
