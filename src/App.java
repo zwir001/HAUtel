@@ -5,13 +5,23 @@ import src.frontend.LoginEmployeeForm;
 import src.frontend.LoginForm;
 import src.frontend.RegisterForm;
 
+import java.awt.*;
+
 
 public class App {
 
     public static void main(String[] args) {
-        LoginForm loginForm = new LoginForm(null);
-        //RegisterForm registerForm = new RegisterForm(null);
-        //AccountForm accountForm = new AccountForm(null);
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    final LoginForm loginForm = new LoginForm(null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 }

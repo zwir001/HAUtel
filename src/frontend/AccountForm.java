@@ -8,9 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Optional;
 
 public class AccountForm extends JDialog {
@@ -48,6 +47,20 @@ public class AccountForm extends JDialog {
     private JLabel userPhoneNumLabel;
     private JLabel petsLabel;
     private JLabel userDataLabel;
+    private JTextField monthField;
+    private JTextField yearField;
+    private JLabel petIDLabel;
+    private JButton confirmButton;
+    private JTextField petIDField;
+    private JTextField dayField;
+    private JLabel dateLabel;
+    private JLabel durationLabel;
+    private JTextField durationField;
+    private JLabel dayLabel;
+    private JLabel monthLabel;
+    private JLabel yearLabel;
+    private JLabel chargesLabel;
+    private JButton confirmReservationButton;
 
     private char[] newPassword;
     private String newEmail;
@@ -61,10 +74,12 @@ public class AccountForm extends JDialog {
     private int newPetSpecies;
     private boolean isValidNewPetData = false;
 
-    private String name;
-    private String surname;
-    private String email;
-    private String phoneNumber;
+    private int petIDReservation;
+    private int dayReservation;
+    private int monthReservation;
+    private int yearReservation;
+    private int durationReservation;
+    private boolean isCorrectReservation = false;
 
 
     public AccountForm(JFrame parent, BaseSystem baseSystem) {
@@ -79,7 +94,7 @@ public class AccountForm extends JDialog {
         changeData(baseSystem);
         addNewPet(baseSystem);
         showData(baseSystem);
-
+        makeReservation(baseSystem);
 
 
 
@@ -186,10 +201,12 @@ public class AccountForm extends JDialog {
         client = baseSystem.getClientData();
         Client curClient = client.get();
 
+
         userNameLabel.setText("Name: " + curClient.getName());
         userSurnameLabel.setText("Surname: " + curClient.getSecondName());
         userEmailLabel.setText("Email address: " + curClient.getEmail());
         userPhoneNumLabel.setText("Phone number: " + curClient.getPhoneNumber());
+        chargesLabel.setText("Your charges: " + curClient.getCharges());
 
         ArrayList<Pet> pets = new ArrayList<>();
         pets = (ArrayList<Pet>) baseSystem.getClientPets(curClient.getId());
@@ -239,6 +256,88 @@ public class AccountForm extends JDialog {
         else {
             return ", pet's allergies: " + allergies;
         }
+    }
+
+    private void makeReservation(BaseSystem baseSystem){
+
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String dateReservation;
+                petIDReservation = Integer.parseInt(petIDField.getText());
+                dayReservation = Integer.parseInt((dayField.getText()));
+                monthReservation = Integer.parseInt((monthField.getText()));
+                yearReservation = Integer.parseInt((yearField.getText()));
+                YearMonth yearMonthObject = YearMonth.of(yearReservation, monthReservation);
+                int daysInMonth = yearMonthObject.lengthOfMonth();
+                if(dayReservation < 1 || dayReservation > daysInMonth){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation day is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if(monthReservation < 1 || monthReservation > 13){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation month is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if(yearReservation < 2000 || yearReservation > 2100){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation year is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                dateReservation = Integer.toString(dayReservation) + "-" + Integer.toString(monthReservation) + "-" + yearReservation;
+                isCorrectReservation = baseSystem.addNewReservation(petIDReservation, dateReservation, durationReservation);
+                if(!isCorrectReservation){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation data is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else {
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation has been added.",
+                            "Reservation added",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+
+                }
+
+            }
+        });
+        /*confirmReservationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                petIDReservation = Integer.parseInt(petIDField.getText());
+                dateReseravtion = dayField.getText();
+                durationReservation = Integer.parseInt(durationField.getText());
+                isCorrectReservation = baseSystem.addNewReservation(petIDReservation, dateReseravtion, durationReservation);
+                if(!isCorrectReservation){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation data is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else {
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation has been added.",
+                            "Reservation added",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+
+                }
+
+
+            }
+        });*/
+
     }
 
 

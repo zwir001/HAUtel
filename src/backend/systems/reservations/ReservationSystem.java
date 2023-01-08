@@ -11,6 +11,7 @@ import src.model.ReservationClientView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Slf4j
@@ -179,7 +180,7 @@ public class ReservationSystem {
         }
 
         for (var i = 0; i <= duration; i++) {
-            var currentDay = LocalDateTime.from(reservationDate.toInstant()).plusDays(i);
+            var currentDay = LocalDateTime.ofInstant(reservationDate.toInstant(), ZoneId.of( "UTC" )).plusDays(i);
             if (reservationRepo.countPetsOfSpeciesOnDate(currentDay.toString(), petSpeciesId) >= dailyCapacity) {
                 return false;
             }
