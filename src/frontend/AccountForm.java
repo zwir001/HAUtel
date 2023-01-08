@@ -221,9 +221,10 @@ public class AccountForm extends JDialog {
         petsList.setModel(listModel);
 
         //show reservations
-        
+
         var reservations = new ArrayList<ReservationClientView>();
         baseSystem.getClientReservations(curClient.getId()).values().forEach(reservations::addAll);
+
         DefaultListModel model = new DefaultListModel();
         for(ReservationClientView reservation : reservations){
             model.addElement(reservation);
