@@ -137,6 +137,10 @@ public class BaseSystem {
         return reservationSystem.getClientReservations(clientId);
     }
 
+    public Map<Integer, Collection<ReservationClientView>> getClientReservations() {
+        return reservationSystem.getClientReservations(userId);
+    }
+
     public boolean cancelReservation(int reservationId) {
         if(!isEmployee) {
             return false;
