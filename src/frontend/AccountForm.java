@@ -46,6 +46,8 @@ public class AccountForm extends JDialog {
     private JLabel userSurnameLabel;
     private JLabel userEmailLabel;
     private JLabel userPhoneNumLabel;
+    private JLabel petsLabel;
+    private JLabel userDataLabel;
 
     private char[] newPassword;
     private String newEmail;
@@ -180,25 +182,63 @@ public class AccountForm extends JDialog {
     }
     private void showData(BaseSystem baseSystem){
 
-        /*Optional<Client> client;
+        Optional<Client> client;
         client = baseSystem.getClientData();
         Client curClient = client.get();
 
         userNameLabel.setText("Name: " + curClient.getName());
         userSurnameLabel.setText("Surname: " + curClient.getSecondName());
-        userEmailLabel.setText("Email address: " + curClient.getName());
-        userPhoneNumLabel.setText("Phone number: " + curClient.getPhoneNumber());*/
+        userEmailLabel.setText("Email address: " + curClient.getEmail());
+        userPhoneNumLabel.setText("Phone number: " + curClient.getPhoneNumber());
 
-        /*ArrayList<Pet> pets = new ArrayList<>();
+        ArrayList<Pet> pets = new ArrayList<>();
+        pets = (ArrayList<Pet>) baseSystem.getClientPets(curClient.getId());
         DefaultListModel listModel = new DefaultListModel();
         for(Pet pet : pets){
-            listModel.addElement(pet);
+            listModel.addElement("Pet's ID: " + pet.getId() + ", pet's Name: " + pet.getName() + ", owner's ID: " + pet.getOwnerId()
+                    + ", species: " + getSpecies(pet) + getDrugs(pet) + getAllergies(pet));
         }
-        petsList.setModel(listModel);*/
+        petsList.setModel(listModel);
 
-
-
-
+    }
+    private String getSpecies(Pet pet){
+        int speciesID = pet.getSpeciesId();
+        if(speciesID == 1){
+            return "Dog";
+        }
+        if(speciesID == 2){
+            return "Cat";
+        }
+        if(speciesID == 3){
+            return "Rabbit";
+        }
+        if(speciesID == 4){
+            return "Hamster";
+        }
+        if(speciesID == 5){
+            return "Parrot";
+        }
+        else{
+            return "Guinea pig";
+        }
+    }
+    private String getDrugs(Pet pet){
+        String drugs = pet.getDrugs();
+        if(drugs.isEmpty()){
+            return ", no pet's drugs";
+        }
+        else {
+            return ", pet's drugs: " + drugs;
+        }
+    }
+    private String getAllergies(Pet pet){
+        String allergies = pet.getAllergy();
+        if(allergies.isEmpty()){
+            return ", no pet's allergies";
+        }
+        else {
+            return ", pet's allergies: " + allergies;
+        }
     }
 
 

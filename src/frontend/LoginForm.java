@@ -20,7 +20,7 @@ public class LoginForm extends JDialog{
     private JLabel enterPasswordLabel;
     private boolean isCorrect = false;
     BaseSystem baseSystem = new BaseSystem();
-    AccountForm accountForm = new AccountForm(null, baseSystem);
+
     RegisterForm registerForm = new RegisterForm(null, baseSystem);
     LoginEmployeeForm loginEmployeeForm = new LoginEmployeeForm(null, baseSystem);
 
@@ -54,6 +54,7 @@ public class LoginForm extends JDialog{
                 else {
                     dispose();
                     setVisible(false);
+                    AccountForm accountForm = new AccountForm(null, baseSystem);
                     accountForm.setVisible(true);
                     accountForm.requestFocus();
                 }
