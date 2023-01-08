@@ -117,6 +117,7 @@ public class ReservationSystem {
             int clientId, int reservationId, Collection<Integer> requestedServicesIds) {
         if (clientId != reservationRepo.getClientIdFromReservation(reservationId)) {
             log.error("Reservation - '{}', not registered for client - '{}'!", reservationId, clientId);
+            return Collections.emptyMap();
         }
 
         var reservationOpt = reservationRepo.getReservation(reservationId);

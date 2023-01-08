@@ -379,37 +379,138 @@ public class AccountForm extends JDialog {
                     serviceIDs.add(4);
                 }
                 errorsServices = baseSystem.orderAdditionalServices(reservationID, serviceIDs);
-                errorsServices.forEach((k, v) -> {
-                    if(v == RequestedServiceStatus.ALREADY_ORDERED){
-                        JOptionPane.showMessageDialog(mainPanel,
-                                "Services are already ordered",
-                                "Try again",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    if(v == RequestedServiceStatus.ADDED){
-                        JOptionPane.showMessageDialog(mainPanel,
-                                "Services has been added.",
-                                "Services added",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        return;
-                    }
-                    if(v == RequestedServiceStatus.NOT_AVAILABLE){
-                        JOptionPane.showMessageDialog(mainPanel,
-                                "Services are not available",
-                                "Try again",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    if(v == RequestedServiceStatus.UNKNOWN_ID){
-                        JOptionPane.showMessageDialog(mainPanel,
-                                "One of the services has an unknown id",
-                                "Try again",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
+                if(errorsServices.isEmpty()){
+                    JOptionPane.showMessageDialog(mainPanel,
+                            "Reservation ID is invalid",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else {
+                    errorsServices.forEach((k, v) -> {
+                        if(k == 1 && v == RequestedServiceStatus.ALREADY_ORDERED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Groomer is already ordered",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k== 1 && v == RequestedServiceStatus.ADDED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Groomer has been added.",
+                                    "Groomer added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                        if(k == 1 && v == RequestedServiceStatus.NOT_AVAILABLE){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Groomer is not available",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 1 && v == RequestedServiceStatus.UNKNOWN_ID){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Service ID is unknown",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
 
-                });
+
+                        if(k == 2 && v == RequestedServiceStatus.ALREADY_ORDERED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Massage is already ordered",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k== 2 && v == RequestedServiceStatus.ADDED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Massage has been added.",
+                                    "Massage added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                        if(k == 2 && v == RequestedServiceStatus.NOT_AVAILABLE){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Massage is not available",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 2 && v == RequestedServiceStatus.UNKNOWN_ID){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Service ID is unknown",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+
+                        if(k == 3 && v == RequestedServiceStatus.ALREADY_ORDERED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Trainer is already ordered",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 3 && v == RequestedServiceStatus.ADDED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Trainer has been added.",
+                                    "Trainer added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                        if(k == 3 && v == RequestedServiceStatus.NOT_AVAILABLE){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Trainer is not available",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 3 && v == RequestedServiceStatus.UNKNOWN_ID){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Service ID is unknown",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+
+                        if(k == 4 && v == RequestedServiceStatus.ALREADY_ORDERED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Bath is already ordered",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 4 && v == RequestedServiceStatus.ADDED){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Bath has been added.",
+                                    "Trainer added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                        if(k == 4 && v == RequestedServiceStatus.NOT_AVAILABLE){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Bath is not available",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        if(k == 4 && v == RequestedServiceStatus.UNKNOWN_ID){
+                            JOptionPane.showMessageDialog(mainPanel,
+                                    "Service ID is unknown",
+                                    "Try again",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                    });
+
+                }
+
 
 
 
