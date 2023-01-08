@@ -3,14 +3,15 @@ package src.frontend;
 import src.backend.systems.BaseSystem;
 import src.model.Client;
 import src.model.Pet;
+import src.model.Reservation;
+import src.model.ReservationClientView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 public class AccountForm extends JDialog {
     private JPanel mainPanel;
@@ -60,6 +61,8 @@ public class AccountForm extends JDialog {
     private JLabel monthLabel;
     private JLabel yearLabel;
     private JLabel chargesLabel;
+    private JLabel reservationsLabel;
+    private JList reservationsList;
     private JButton confirmReservationButton;
 
     private char[] newPassword;
@@ -208,7 +211,7 @@ public class AccountForm extends JDialog {
         userPhoneNumLabel.setText("Phone number: " + curClient.getPhoneNumber());
         chargesLabel.setText("Your charges: " + curClient.getCharges());
 
-        ArrayList<Pet> pets = new ArrayList<>();
+        ArrayList<Pet> pets;
         pets = (ArrayList<Pet>) baseSystem.getClientPets(curClient.getId());
         DefaultListModel listModel = new DefaultListModel();
         for(Pet pet : pets){
@@ -216,6 +219,22 @@ public class AccountForm extends JDialog {
                     + ", species: " + getSpecies(pet) + getDrugs(pet) + getAllergies(pet));
         }
         petsList.setModel(listModel);
+
+        //show reservations
+        
+        var reservations = new ArrayList<ReservationClientView>();
+        baseSystem.getClientReservations(curClient.getId()).values().forEach(reservations::addAll);
+        DefaultListModel model = new DefaultListModel();
+        for(ReservationClientView reservation : reservations){
+            model.addElement(reservation);
+
+        }
+        reservationsList.setModel(model);
+
+
+
+
+
 
     }
     private String getSpecies(Pet pet){
@@ -292,7 +311,7 @@ public class AccountForm extends JDialog {
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                dateReservation = Integer.toString(dayReservation) + "-" + Integer.toString(monthReservation) + "-" + yearReservation;
+                dateReservation = (dayReservation) + "-" + (monthReservation) + "-" + yearReservation;
                 isCorrectReservation = baseSystem.addNewReservation(petIDReservation, dateReservation, durationReservation);
                 if(!isCorrectReservation){
                     JOptionPane.showMessageDialog(mainPanel,
