@@ -1,4 +1,4 @@
-package src.backend.systems.authentification.repository;
+package src.backend.systems.authentification.repositories;
 
 import src.backend.infrastructure.ConnectionManager;
 import src.backend.infrastructure.QueryExecutor;
