@@ -79,6 +79,7 @@ public class AccountForm extends JDialog {
     private JLabel massageLabel;
     private JLabel trainerLabel;
     private JLabel bathLabel;
+    private JComboBox choosePetComboBox;
     private JButton confirmReservationButton;
 
     private char[] newPassword;
@@ -303,12 +304,25 @@ public class AccountForm extends JDialog {
     }
 
     private void makeReservation(BaseSystem baseSystem){
+        Optional<Client> client;
+        client = baseSystem.getClientData();
+        Client curClient = client.get();
+
+        ArrayList<Pet> pets;
+        pets = (ArrayList<Pet>) baseSystem.getClientPets(curClient.getId());
+        DefaultComboBoxModel dml= new DefaultComboBoxModel();
+        for (int i = 0; i < pets.size(); i++) {
+            dml.addElement(pets.get(i).getName());
+        }
+        choosePetComboBox.setModel(dml);
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String dateReservation;
-                petIDReservation = Integer.parseInt(petIDField.getText());
+                int chosePet = choosePetComboBox.getSelectedIndex();
+                Pet pet = pets.get(chosePet);
+                int petID = pet.getId();
                 dayReservation = Integer.parseInt((dayField.getText()));
                 monthReservation = Integer.parseInt((monthField.getText()));
                 yearReservation = Integer.parseInt((yearField.getText()));
@@ -337,7 +351,7 @@ public class AccountForm extends JDialog {
                     return;
                 }
                 dateReservation = (dayReservation) + "-" + (monthReservation) + "-" + yearReservation;
-                isCorrectReservation = baseSystem.addNewReservation(petIDReservation, dateReservation, durationReservation);
+                isCorrectReservation = baseSystem.addNewReservation(petID, dateReservation, durationReservation);
                 if(!isCorrectReservation){
                     JOptionPane.showMessageDialog(mainPanel,
                             "Reservation data is invalid",

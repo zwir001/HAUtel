@@ -244,7 +244,7 @@
                 </constraints>
                 <properties>
                   <font name="Dialog" size="12" style="0"/>
-                  <text value="Enter the ID of the pet you want to make a reservation for"/>
+                  <text value="Choose the pet you want to make a reservation for"/>
                 </properties>
               </component>
               <component id="d50e3" class="javax.swing.JTextField" binding="dayField">
@@ -284,16 +284,6 @@
                 <properties>
                   <font name="Dialog" size="12" style="0"/>
                   <text value="Enter reservation date:"/>
-                </properties>
-              </component>
-              <component id="2813b" class="javax.swing.JTextField" binding="petIDField">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <font name="Dialog" size="12" style="0"/>
                 </properties>
               </component>
               <component id="3d246" class="javax.swing.JLabel" binding="durationLabel">
@@ -350,6 +340,12 @@
                   <font name="Dialog" size="12" style="0"/>
                   <text value="Confirm reservation"/>
                 </properties>
+              </component>
+              <component id="18390" class="javax.swing.JComboBox" binding="choosePetComboBox">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
               </component>
             </children>
           </grid>
